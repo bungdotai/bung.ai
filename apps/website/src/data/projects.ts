@@ -17,6 +17,13 @@ export const projects: Project[] = [
     status: "live",
   },
   {
+    name: "40 by 40 💰",
+    emoji: "💰",
+    description: "Are you on track to $40M by age 40?",
+    url: "https://forty.bung.ai",
+    status: "live",
+  },
+  {
     name: "More coming soon...",
     emoji: "✨",
     description: "New projects are always brewing. Stay tuned.",
