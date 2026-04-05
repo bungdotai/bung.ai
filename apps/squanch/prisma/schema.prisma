@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  lifts     Lift[]
+}
+
+model Lift {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  type     String
+  weight   Float
+  reps     Int
+  oneRM    Float
+  loggedAt DateTime @default(now())
+}
+
+model InviteCode {
+  id     String    @id @default(cuid())
+  code   String    @unique
+  usedBy String?
+  usedAt DateTime?
+}

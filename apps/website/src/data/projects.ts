@@ -24,6 +24,13 @@ export const projects: Project[] = [
     status: "live",
   },
   {
+    name: "Squanch 🏋️",
+    emoji: "🏋️",
+    description: "Track your squat, deadlift and bench with friends",
+    url: "https://squanch.bung.ai",
+    status: "live",
+  },
+  {
     name: "More coming soon...",
     emoji: "✨",
     description: "New projects are always brewing. Stay tuned.",
