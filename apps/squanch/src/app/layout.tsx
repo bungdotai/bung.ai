@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import Nav from "./components/Nav";
 
 export const metadata: Metadata = {
   title: "Squanch 🏋️",
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Providers>
           <header className="border-b border-neutral-800 px-6 py-4">
@@ -18,10 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="/" className="text-2xl font-bold text-white">Squanch 🏋️</a>
                 <p className="text-sm text-neutral-400">Track your squanch, dunch, and bunch</p>
               </div>
-              <nav className="flex gap-4 text-sm">
-                <a href="/log" className="text-neutral-300 hover:text-white transition">Log</a>
-                <a href="/login" className="text-neutral-300 hover:text-white transition">Login</a>
-              </nav>
+              <Nav />
             </div>
           </header>
           <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-8">
