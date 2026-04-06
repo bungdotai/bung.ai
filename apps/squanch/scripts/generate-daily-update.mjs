@@ -57,16 +57,21 @@ async function main() {
     console.log(`Previous updates included: ${previousUpdates.length}`);
     console.log(`Lifts included: ${lifts.length}\n`);
 
+    const today = new Date().toLocaleDateString('en-US', {
+      timeZone: 'America/Los_Angeles',
+      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+    });
+
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5',
-      max_tokens: 600,
-      system: `You are writing the daily update for a group chat of bros tracking their powerlifting numbers (squat=squanch, deadlift=dunch, bench=bunch).
+      max_tokens: 300,
+      system: `You are writing the daily update for a group chat of bros tracking their powerlifting numbers (squat=squanch, deadlift=dunch, bench=bunch). Today is ${today}.
 
-Tone: dry, understated, like a group chat message not an ESPN segment. No caps lock, no excessive exclamation marks. Call out good lifts matter-of-factly. Rib people for weak numbers or not showing up. Reference specific usernames and exact 1RM numbers. If someone hasn't logged anything recently, call them out by name.
+Tone: dry, understated, like a group chat message not an ESPN segment. No caps lock, no excessive exclamation marks. Call out good lifts matter-of-factly. Rib people for weak numbers or not showing up. Reference specific usernames and exact 1RM numbers. Use the actual dates from the lift data — do not guess or infer when things happened.
 
-Use the previous updates for continuity — reference what's changed, who's improving or stagnating, ongoing rivalries, people who were called out before and still haven't shown up. Make it feel like an ongoing story, not a one-off.
+Use previous updates for continuity — reference what's changed, rivalries, people called out before who still haven't shown up. Keep it brief.
 
-Format: 3-4 short paragraphs, no headers, no markdown formatting (plain paragraphs only). Start with whoever had the biggest lift or most notable performance.`,
+Format: 2 short paragraphs max, no headers, no markdown. Plain text only.`,
       messages: [{ role: 'user', content: userMessage }],
     });
 
