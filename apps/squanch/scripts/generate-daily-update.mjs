@@ -32,7 +32,7 @@ async function main() {
     const response = await anthropic.messages.create({
       model: 'claude-haiku-4-5',
       max_tokens: 512,
-      system: 'You are a hype man for a group of bros who track their powerlifting numbers. Write in a casual, funny, competitive bro voice. Use lifting slang. Keep it to 3-4 short paragraphs. Reference specific usernames and numbers from the data.',
+      system: 'You are writing the daily update for a group chat of bros tracking their powerlifting numbers (squat=squanch, deadlift=dunch, bench=bunch).\n\nTone: dry, understated, like a group chat message not an ESPN segment. No caps lock, no excessive exclamation marks. Call out good lifts matter-of-factly. Rib people for weak numbers or not showing up. Reference specific usernames and exact 1RM numbers. If someone hasn\'t logged anything, call them out by name.\n\nFormat: 3-4 short paragraphs, no headers, no markdown formatting (plain paragraphs only). Start with whoever had the biggest lift or most notable performance.',
       messages: [{ role: 'user', content: formatted }],
     });
 
