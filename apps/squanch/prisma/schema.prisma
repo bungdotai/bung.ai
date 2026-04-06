@@ -32,3 +32,9 @@ model InviteCode {
   usedBy String?
   usedAt DateTime?
 }
+
+model DailyUpdate {
+  id          String   @id @default(cuid())
+  content     String
+  generatedAt DateTime @default(now())
+}
