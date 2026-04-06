@@ -30,7 +30,7 @@ export default function LogPage() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (status === "unauthenticated") router.push("/login");
+    if (status === "unauthenticated") router.replace("/login?redirect=/log");
   }, [status, router]);
 
   const fetchLifts = async () => {
@@ -84,6 +84,8 @@ export default function LogPage() {
           <div>
             <label className="block text-sm text-neutral-400 mb-1">Lift Type</label>
             <select
+              name="type"
+              id="type"
               value={type}
               onChange={(e) => setType(e.target.value)}
               className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
@@ -100,6 +102,9 @@ export default function LogPage() {
               <label className="block text-sm text-neutral-400 mb-1">Weight (lbs)</label>
               <input
                 type="number"
+                name="weight"
+                id="weight"
+                placeholder="Weight (lbs)"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
                 className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
@@ -112,6 +117,9 @@ export default function LogPage() {
               <label className="block text-sm text-neutral-400 mb-1">Reps</label>
               <input
                 type="number"
+                name="reps"
+                id="reps"
+                placeholder="Reps"
                 value={reps}
                 onChange={(e) => setReps(e.target.value)}
                 className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"

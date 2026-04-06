@@ -33,13 +33,25 @@ const USER_COLORS = [
 
 export default function LiftCharts() {
   const [lifts, setLifts] = useState<LiftData[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
     fetch("/api/lifts")
       .then((r) => r.json())
       .then(setLifts)
       .catch(() => {});
-  }, []);
+  }, [isMounted]);
+
+  if (!isMounted) {
+    return (
+      <div className="h-64 flex items-center justify-center text-gray-500">Loading chart...</div>
+    );
+  }
 
   return (
     <div className="space-y-8">
