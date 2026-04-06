@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const lifts = await prisma.lift.findMany({
-    include: { user: { select: { name: true } } },
+    include: { user: { select: { username: true } } },
     orderBy: { loggedAt: "asc" },
   });
   return NextResponse.json(lifts);

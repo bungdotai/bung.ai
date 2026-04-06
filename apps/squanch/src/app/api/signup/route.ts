@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, password, inviteCode } = await req.json();
+    const { username, password, inviteCode } = await req.json();
 
-    if (!name || !email || !password || !inviteCode) {
+    if (!username || !password || !inviteCode) {
       return NextResponse.json({ error: "All fields required" }, { status: 400 });
     }
 
@@ -15,14 +15,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid or used invite code" }, { status: 400 });
     }
 
-    const existing = await prisma.user.findUnique({ where: { email } });
+    const existing = await prisma.user.findUnique({ where: { username } });
     if (existing) {
-      return NextResponse.json({ error: "Email already registered" }, { status: 400 });
+      return NextResponse.json({ error: "Username already taken" }, { status: 400 });
     }
 
     const hashed = await hash(password, 12);
     const user = await prisma.user.create({
-      data: { name, email, password: hashed },
+      data: { username, password: hashed },
     });
 
     await prisma.inviteCode.update({

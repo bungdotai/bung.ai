@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 export default function SignupPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [inviteCode, setInviteCode] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +20,7 @@ export default function SignupPage() {
     const res = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password, inviteCode }),
+      body: JSON.stringify({ username, password, inviteCode }),
     });
 
     const data = await res.json();
@@ -33,7 +32,7 @@ export default function SignupPage() {
 
     // Auto-login after signup
     const signInRes = await signIn("credentials", {
-      email,
+      username,
       password,
       redirect: false,
     });
@@ -56,27 +55,14 @@ export default function SignupPage() {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm text-neutral-400 mb-1">Name</label>
+            <label className="block text-sm text-neutral-400 mb-1">Username</label>
             <input
               type="text"
-              name="name"
-              id="name"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm text-neutral-400 mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="username"
+              id="username"
+              placeholder="Choose a username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
               required
             />

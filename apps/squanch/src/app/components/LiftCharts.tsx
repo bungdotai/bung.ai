@@ -17,7 +17,7 @@ interface LiftData {
   type: string;
   oneRM: number;
   loggedAt: string;
-  user: { name: string };
+  user: { username: string };
 }
 
 const LIFT_TYPES = [
@@ -57,7 +57,7 @@ export default function LiftCharts() {
     <div className="space-y-8">
       {LIFT_TYPES.map((lt) => {
         const filtered = lifts.filter((l) => l.type === lt.key);
-        const users = [...new Set(filtered.map((l) => l.user.name))];
+        const users = [...new Set(filtered.map((l) => l.user.username))];
 
         // Build data points per date, with one key per user
         const dateMap = new Map<string, Record<string, number>>();
@@ -66,8 +66,8 @@ export default function LiftCharts() {
           if (!dateMap.has(date)) dateMap.set(date, {});
           const entry = dateMap.get(date)!;
           // Keep max per user per date
-          if (!entry[l.user.name] || l.oneRM > entry[l.user.name]) {
-            entry[l.user.name] = Math.round(l.oneRM);
+          if (!entry[l.user.username] || l.oneRM > entry[l.user.username]) {
+            entry[l.user.username] = Math.round(l.oneRM);
           }
         }
 
