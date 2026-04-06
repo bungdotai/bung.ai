@@ -80,31 +80,30 @@ export default function LiftCharts() {
             <h2 className="text-lg font-semibold mb-4" style={{ color: lt.color }}>
               {lt.label} — Estimated 1RM (lbs)
             </h2>
-            {chartData.length === 0 ? (
-              <p className="text-neutral-500 text-sm">No data yet. Start logging!</p>
-            ) : (
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
-                  <Tooltip
-                    contentStyle={{ background: "#1a1a1a", border: "1px solid #333", borderRadius: 8 }}
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                <XAxis dataKey="date" stroke="#666" fontSize={12} />
+                <YAxis stroke="#666" fontSize={12} />
+                <Tooltip
+                  contentStyle={{ background: "#1a1a1a", border: "1px solid #333", borderRadius: 8 }}
+                />
+                <Legend />
+                {users.map((user, i) => (
+                  <Line
+                    key={user}
+                    type="monotone"
+                    dataKey={user}
+                    stroke={USER_COLORS[i % USER_COLORS.length]}
+                    strokeWidth={2}
+                    dot={{ r: 4 }}
+                    connectNulls
                   />
-                  <Legend />
-                  {users.map((user, i) => (
-                    <Line
-                      key={user}
-                      type="monotone"
-                      dataKey={user}
-                      stroke={USER_COLORS[i % USER_COLORS.length]}
-                      strokeWidth={2}
-                      dot={{ r: 4 }}
-                      connectNulls
-                    />
-                  ))}
-                </LineChart>
-              </ResponsiveContainer>
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+            {chartData.length === 0 && (
+              <p className="text-neutral-500 text-sm text-center -mt-32 relative z-10">No data yet. Start logging!</p>
             )}
           </div>
         );
