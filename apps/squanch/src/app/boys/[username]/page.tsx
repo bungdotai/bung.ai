@@ -122,7 +122,7 @@ export default async function UserStatsPage({
                     </div>
                     <div className="flex items-center gap-6 text-sm text-neutral-400">
                       <span>1RM: <span className="text-amber-400">{Math.round(lift.oneRM)}</span></span>
-                      <span>{new Date(lift.loggedAt).toLocaleDateString()}</span>
+                      <span>{new Date(lift.loggedAt).toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "numeric", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
                     </div>
                   </div>
                   <LiftInteractionsClient lift={lift} currentUserId={currentUserId} />
