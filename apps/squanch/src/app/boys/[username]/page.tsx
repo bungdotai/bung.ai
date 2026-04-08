@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { LiftInteractionsClient } from "@/app/components/LiftInteractions";
+import { computeEarnedBadges } from "@/lib/badges";
+import BadgeIcon from "@/app/components/BadgeIcon";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +45,27 @@ export default async function UserStatsPage({
 
   const currentUserId = (session?.user as any)?.id ?? null;
 
+  const [commentRow] = await prisma.$queryRaw<Array<{count: bigint}>>`
+    SELECT COUNT(*) as count FROM "Comment" c
+    JOIN "Lift" l ON l.id = c."liftId"
+    WHERE c."authorId" = ${user.id} AND l."userId" != ${user.id}
+  `;
+  const [reactionRow] = await prisma.$queryRaw<Array<{count: bigint}>>`
+    SELECT COUNT(*) as count FROM "Reaction" r
+    JOIN "Lift" l ON l.id = r."liftId"
+    WHERE r."authorId" = ${user.id} AND l."userId" != ${user.id}
+  `;
+  const earnedBadges = computeEarnedBadges({
+    lifts: user.lifts.map(l => ({
+      ...l,
+      loggedAt: l.loggedAt.toISOString(),
+      reactions: l.reactions.map(r => ({ emoji: r.emoji, authorId: r.authorId })),
+    })),
+    userId: user.id,
+    commentsOnOthers: Number(commentRow?.count ?? 0),
+    reactionsOnOthers: Number(reactionRow?.count ?? 0),
+  });
+
   // All-time best 1RM per lift type
   const prs: Record<string, number> = {};
   for (const lt of LIFT_TYPES) {
@@ -77,6 +100,16 @@ export default async function UserStatsPage({
           Member since {new Date(user.createdAt).toLocaleDateString()}
         </p>
       </div>
+
+      {/* Badges */}
+      {earnedBadges.length > 0 && (
+        <div>
+          <h2 className="text-lg font-semibold text-neutral-300 mb-4">Badges</h2>
+          <div className="flex flex-wrap gap-3">
+            {earnedBadges.map(b => <BadgeIcon key={b.slug} badge={b} size="lg" />)}
+          </div>
+        </div>
+      )}
 
       {/* All-time PRs */}
       <div>
