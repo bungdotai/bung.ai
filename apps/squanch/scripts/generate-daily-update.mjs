@@ -23,6 +23,18 @@ async function main() {
     take: 14,
   });
 
+  // Fetch comments since the last update (or last 30 days if no prior update)
+  const lastUpdate = previousUpdates[0];
+  const commentsSince = lastUpdate ? lastUpdate.generatedAt : thirtyDaysAgo;
+  const recentComments = await prisma.comment.findMany({
+    where: { createdAt: { gte: commentsSince } },
+    include: {
+      author: { select: { username: true } },
+      lift: { include: { user: { select: { username: true } } } },
+    },
+    orderBy: { createdAt: 'asc' },
+  });
+
   let content;
 
   if (!lifts || lifts.length === 0) {
@@ -48,13 +60,26 @@ async function main() {
         }).join('\n\n')
       : null;
 
+    // Format comments since last update
+    const commentsText = recentComments.length > 0
+      ? recentComments.map(c => {
+          const time = new Date(c.createdAt).toLocaleString('en-US', {
+            timeZone: 'America/Los_Angeles',
+            month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+          });
+          return `${c.author.username} on ${c.lift.user.username}'s ${c.lift.type} (${c.lift.weight}lbs x ${c.lift.reps} reps) at ${time}: "${c.body}"`;
+        }).join('\n')
+      : null;
+
     const userMessage = [
       prevText ? `Previous updates (last 2 weeks, for context):\n\n${prevText}` : null,
+      commentsText ? `Comments since last update:\n\n${commentsText}` : null,
       `Current lift data (last 30 days):\n\n${liftText}`,
     ].filter(Boolean).join('\n\n---\n\n');
 
     console.log('Sending to Claude...\n');
     console.log(`Previous updates included: ${previousUpdates.length}`);
+    console.log(`Comments included: ${recentComments.length}`);
     console.log(`Lifts included: ${lifts.length}\n`);
 
     const today = new Date().toLocaleDateString('en-US', {
