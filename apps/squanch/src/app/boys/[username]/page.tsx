@@ -86,7 +86,7 @@ export default async function UserStatsPage({
             <Link
               key={lt.key}
               href={`/boys/${user.username}/lifts/${lt.key}`}
-              className={`bg-neutral-900 border ${lt.border} hover:border-opacity-80 rounded-xl p-6 transition group`}
+              className={`bg-neutral-900 border ${lt.border} hover:border-opacity-80 rounded-xl p-4 sm:p-6 transition group`}
             >
               <div className={`text-sm font-medium ${lt.color} mb-1`}>{lt.label}</div>
               <div className="text-2xl font-bold text-white">
@@ -111,7 +111,7 @@ export default async function UserStatsPage({
               const lt = LIFT_TYPES.find((t) => t.key === lift.type);
               return (
                 <div key={lift.id} className="bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                     <div className="flex items-center gap-4">
                       <span className={`text-sm font-medium w-28 ${lt?.color ?? "text-neutral-400"}`}>
                         {lt?.label ?? lift.type}

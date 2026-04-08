@@ -47,7 +47,8 @@ export default function LiftDetailClient({
           {liftLabel} — Estimated 1RM (lbs)
         </h2>
         {chartData.length > 0 ? (
-          <ResponsiveContainer width="100%" height={280}>
+          <div className="h-[200px] sm:h-[280px]">
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#333" />
               <XAxis dataKey="date" stroke="#666" fontSize={12} />
@@ -65,6 +66,7 @@ export default function LiftDetailClient({
               />
             </LineChart>
           </ResponsiveContainer>
+          </div>
         ) : (
           <p className="text-neutral-500 text-sm text-center py-16">No data yet.</p>
         )}
@@ -82,7 +84,7 @@ export default function LiftDetailClient({
                 key={lift.id}
                 className="bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-4"
               >
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div className="text-white font-medium">
                     {lift.weight} lbs × {lift.reps} reps
                   </div>

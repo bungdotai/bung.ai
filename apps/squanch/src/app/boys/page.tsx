@@ -24,7 +24,7 @@ export default async function BoysPage() {
             <Link
               key={user.id}
               href={`/boys/${user.username}`}
-              className="bg-neutral-900 border border-neutral-800 hover:border-amber-600/40 rounded-xl p-6 transition group"
+              className="bg-neutral-900 border border-neutral-800 hover:border-amber-600/40 rounded-xl p-4 sm:p-6 transition group"
             >
               <div className="text-xl font-semibold text-white group-hover:text-amber-400 transition mb-2">
                 {user.username}
