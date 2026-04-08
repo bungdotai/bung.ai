@@ -1,7 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { computeEarnedBadges } from "@/lib/badges";
-import BadgeIcon from "@/app/components/BadgeIcon";
 
 export const dynamic = "force-dynamic";
 
@@ -10,31 +8,10 @@ export default async function BoysPage() {
     orderBy: { username: "asc" },
     include: {
       lifts: {
-        select: {
-          id: true,
-          oneRM: true,
-          type: true,
-          loggedAt: true,
-          reactions: { select: { emoji: true, authorId: true } },
-        },
+        select: { oneRM: true, type: true },
       },
     },
   });
-
-  const commentCounts = await prisma.$queryRaw<Array<{authorId: string; count: bigint}>>`
-    SELECT c."authorId", COUNT(*) as count FROM "Comment" c
-    JOIN "Lift" l ON l.id = c."liftId"
-    WHERE c."authorId" != l."userId"
-    GROUP BY c."authorId"
-  `;
-  const reactionCounts = await prisma.$queryRaw<Array<{authorId: string; count: bigint}>>`
-    SELECT r."authorId", COUNT(*) as count FROM "Reaction" r
-    JOIN "Lift" l ON l.id = r."liftId"
-    WHERE r."authorId" != l."userId"
-    GROUP BY r."authorId"
-  `;
-  const commentMap = Object.fromEntries(commentCounts.map(c => [c.authorId, Number(c.count)]));
-  const reactionMap = Object.fromEntries(reactionCounts.map(r => [r.authorId, Number(r.count)]));
 
   return (
     <div className="space-y-6">
@@ -43,12 +20,6 @@ export default async function BoysPage() {
         {users.map((user) => {
           const liftCount = user.lifts.length;
           const bestOneRM = user.lifts.reduce((max, l) => Math.max(max, l.oneRM), 0);
-          const earnedBadges = computeEarnedBadges({
-            lifts: user.lifts.map(l => ({ ...l, loggedAt: l.loggedAt.toISOString() })),
-            userId: user.id,
-            commentsOnOthers: commentMap[user.id] ?? 0,
-            reactionsOnOthers: reactionMap[user.id] ?? 0,
-          });
           return (
             <Link
               key={user.id}
@@ -64,11 +35,6 @@ export default async function BoysPage() {
               {bestOneRM > 0 && (
                 <div className="text-sm text-neutral-400 mt-1">
                   Best 1RM: <span className="text-amber-400">{Math.round(bestOneRM)} lbs</span>
-                </div>
-              )}
-              {earnedBadges.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-neutral-800">
-                  {earnedBadges.map(b => <BadgeIcon key={b.slug} badge={b} size="sm" />)}
                 </div>
               )}
             </Link>
