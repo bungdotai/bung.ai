@@ -1,0 +1,106 @@
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
+
+const LIFT_TYPES = [
+  { key: "squanch", label: "Squanch (Squat)", color: "text-blue-400", border: "border-blue-600/40" },
+  { key: "dunch", label: "Dunch (Deadlift)", color: "text-green-400", border: "border-green-600/40" },
+  { key: "bunch", label: "Bunch (Bench)", color: "text-purple-400", border: "border-purple-600/40" },
+];
+
+export default async function UserStatsPage({
+  params,
+}: {
+  params: { username: string };
+}) {
+  const user = await prisma.user.findUnique({
+    where: { username: params.username },
+    include: {
+      lifts: {
+        orderBy: { loggedAt: "desc" },
+      },
+    },
+  });
+
+  if (!user) notFound();
+
+  // All-time best 1RM per lift type
+  const prs: Record<string, number> = {};
+  for (const lt of LIFT_TYPES) {
+    const best = user.lifts
+      .filter((l) => l.type === lt.key)
+      .reduce((max, l) => Math.max(max, l.oneRM), 0);
+    prs[lt.key] = best;
+  }
+
+  // Recent lifts (last 10 across all types)
+  const recentLifts = user.lifts.slice(0, 10);
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <Link href="/boys" className="text-neutral-500 hover:text-amber-400 text-sm transition">
+          ← The Boys
+        </Link>
+        <h1 className="text-3xl font-bold text-white mt-2">{user.username}</h1>
+        <p className="text-neutral-500 text-sm mt-1">
+          Member since {new Date(user.createdAt).toLocaleDateString()}
+        </p>
+      </div>
+
+      {/* All-time PRs */}
+      <div>
+        <h2 className="text-lg font-semibold text-neutral-300 mb-4">All-Time PRs</h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {LIFT_TYPES.map((lt) => (
+            <Link
+              key={lt.key}
+              href={`/boys/${user.username}/lifts/${lt.key}`}
+              className={`bg-neutral-900 border ${lt.border} hover:border-opacity-80 rounded-xl p-6 transition group`}
+            >
+              <div className={`text-sm font-medium ${lt.color} mb-1`}>{lt.label}</div>
+              <div className="text-2xl font-bold text-white">
+                {prs[lt.key] > 0 ? `${Math.round(prs[lt.key])} lbs` : "—"}
+              </div>
+              <div className="text-xs text-neutral-500 mt-2 group-hover:text-amber-400 transition">
+                View history →
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Recent lift history */}
+      <div>
+        <h2 className="text-lg font-semibold text-neutral-300 mb-4">Recent Lifts</h2>
+        {recentLifts.length === 0 ? (
+          <p className="text-neutral-500">No lifts logged yet.</p>
+        ) : (
+          <div className="bg-neutral-900 rounded-xl border border-neutral-800 divide-y divide-neutral-800">
+            {recentLifts.map((lift) => {
+              const lt = LIFT_TYPES.find((t) => t.key === lift.type);
+              return (
+                <div key={lift.id} className="flex items-center justify-between px-6 py-4">
+                  <div className="flex items-center gap-4">
+                    <span className={`text-sm font-medium w-28 ${lt?.color ?? "text-neutral-400"}`}>
+                      {lt?.label ?? lift.type}
+                    </span>
+                    <span className="text-white">
+                      {lift.weight} lbs × {lift.reps} reps
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-6 text-sm text-neutral-400">
+                    <span>1RM: <span className="text-amber-400">{Math.round(lift.oneRM)}</span></span>
+                    <span>{new Date(lift.loggedAt).toLocaleDateString()}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

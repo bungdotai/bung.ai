@@ -8,22 +8,48 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  username  String   @unique
+  id        String     @id @default(cuid())
+  username  String     @unique
   password  String
-  createdAt DateTime @default(now())
+  createdAt DateTime   @default(now())
   lifts     Lift[]
+  comments  Comment[]  @relation("CommentAuthor")
+  reactions Reaction[] @relation("ReactionAuthor")
 }
 
 model Lift {
-  id       String   @id @default(cuid())
-  userId   String
-  user     User     @relation(fields: [userId], references: [id])
-  type     String
-  weight   Float
-  reps     Int
-  oneRM    Float
-  loggedAt DateTime @default(now())
+  id        String     @id @default(cuid())
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
+  type      String
+  weight    Float
+  reps      Int
+  oneRM     Float
+  loggedAt  DateTime   @default(now())
+  comments  Comment[]
+  reactions Reaction[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  liftId    String
+  lift      Lift     @relation(fields: [liftId], references: [id])
+  authorId  String
+  author    User     @relation("CommentAuthor", fields: [authorId], references: [id])
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  liftId    String
+  lift      Lift     @relation(fields: [liftId], references: [id])
+  authorId  String
+  author    User     @relation("ReactionAuthor", fields: [authorId], references: [id])
+  emoji     String
+  createdAt DateTime @default(now())
+
+  @@unique([liftId, authorId, emoji])
 }
 
 model InviteCode {
