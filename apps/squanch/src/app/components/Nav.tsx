@@ -10,7 +10,7 @@ export default function Nav() {
       <a href="/boys" className="text-neutral-300 hover:text-white transition">Boys</a>
       {status === "loading" ? null : session ? (
         <>
-          <span className="text-neutral-300">{session.user?.name}</span>
+          <a href={`/boys/${session.user?.name}`} className="text-amber-400 hover:text-amber-300 transition font-medium">{session.user?.name}</a>
           <a href="/log" className="text-neutral-300 hover:text-white transition">Log</a>
           <button
             onClick={() => signOut()}

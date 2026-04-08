@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { LiftInteractionsClient } from "@/app/components/LiftInteractions";
 
 export const dynamic = "force-dynamic";
 
@@ -15,16 +18,30 @@ export default async function UserStatsPage({
 }: {
   params: { username: string };
 }) {
-  const user = await prisma.user.findUnique({
-    where: { username: params.username },
-    include: {
-      lifts: {
-        orderBy: { loggedAt: "desc" },
+  const [user, session] = await Promise.all([
+    prisma.user.findUnique({
+      where: { username: params.username },
+      include: {
+        lifts: {
+          orderBy: { loggedAt: "desc" },
+          include: {
+            comments: {
+              include: { author: { select: { username: true } } },
+              orderBy: { createdAt: "asc" },
+            },
+            reactions: {
+              include: { author: { select: { username: true } } },
+            },
+          },
+        },
       },
-    },
-  });
+    }),
+    getServerSession(authOptions),
+  ]);
 
   if (!user) notFound();
+
+  const currentUserId = (session?.user as any)?.id ?? null;
 
   // All-time best 1RM per lift type
   const prs: Record<string, number> = {};
@@ -35,8 +52,19 @@ export default async function UserStatsPage({
     prs[lt.key] = best;
   }
 
-  // Recent lifts (last 10 across all types)
-  const recentLifts = user.lifts.slice(0, 10);
+  // Recent lifts (last 10 across all types), dates serialized to strings
+  const recentLifts = user.lifts.slice(0, 10).map((l) => ({
+    ...l,
+    loggedAt: l.loggedAt.toISOString(),
+    comments: l.comments.map((c) => ({
+      ...c,
+      createdAt: c.createdAt.toISOString(),
+    })),
+    reactions: l.reactions.map((r) => ({
+      ...r,
+      createdAt: (r as any).createdAt?.toISOString?.() ?? "",
+    })),
+  }));
 
   return (
     <div className="space-y-8">
@@ -78,23 +106,26 @@ export default async function UserStatsPage({
         {recentLifts.length === 0 ? (
           <p className="text-neutral-500">No lifts logged yet.</p>
         ) : (
-          <div className="bg-neutral-900 rounded-xl border border-neutral-800 divide-y divide-neutral-800">
+          <div className="space-y-4">
             {recentLifts.map((lift) => {
               const lt = LIFT_TYPES.find((t) => t.key === lift.type);
               return (
-                <div key={lift.id} className="flex items-center justify-between px-6 py-4">
-                  <div className="flex items-center gap-4">
-                    <span className={`text-sm font-medium w-28 ${lt?.color ?? "text-neutral-400"}`}>
-                      {lt?.label ?? lift.type}
-                    </span>
-                    <span className="text-white">
-                      {lift.weight} lbs × {lift.reps} reps
-                    </span>
+                <div key={lift.id} className="bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <span className={`text-sm font-medium w-28 ${lt?.color ?? "text-neutral-400"}`}>
+                        {lt?.label ?? lift.type}
+                      </span>
+                      <span className="text-white">
+                        {lift.weight} lbs × {lift.reps} reps
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-6 text-sm text-neutral-400">
+                      <span>1RM: <span className="text-amber-400">{Math.round(lift.oneRM)}</span></span>
+                      <span>{new Date(lift.loggedAt).toLocaleDateString()}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-6 text-sm text-neutral-400">
-                    <span>1RM: <span className="text-amber-400">{Math.round(lift.oneRM)}</span></span>
-                    <span>{new Date(lift.loggedAt).toLocaleDateString()}</span>
-                  </div>
+                  <LiftInteractionsClient lift={lift} currentUserId={currentUserId} />
                 </div>
               );
             })}
