@@ -28,6 +28,7 @@ export default function LogPage() {
   const [loading, setLoading] = useState(false);
   const [myLifts, setMyLifts] = useState<Lift[]>([]);
   const [message, setMessage] = useState("");
+  const [notifyOthers, setNotifyOthers] = useState(true);
 
   useEffect(() => {
     if (status === "unauthenticated") router.replace("/login?redirect=/log");
@@ -50,7 +51,7 @@ export default function LogPage() {
     const res = await fetch("/api/lifts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type, weight: parseFloat(weight), reps: parseInt(reps) }),
+      body: JSON.stringify({ type, weight: parseFloat(weight), reps: parseInt(reps), notifyOthers }),
     });
 
     if (res.ok) {
@@ -129,6 +130,15 @@ export default function LogPage() {
               />
             </div>
           </div>
+          <label className="flex items-center gap-2 text-sm text-neutral-400 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={notifyOthers}
+              onChange={(e) => setNotifyOthers(e.target.checked)}
+              className="accent-amber-500"
+            />
+            Notify the boys about your {LIFT_TYPES.find((t) => t.key === type)?.label ?? type} 💪
+          </label>
           <button
             type="submit"
             disabled={loading}

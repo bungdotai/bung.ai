@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sendPushToAllExcept } from "@/lib/push";
 
 export async function GET() {
   const lifts = await prisma.lift.findMany({
@@ -17,17 +18,32 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { type, weight, reps } = await req.json();
+  const { type, weight, reps, notifyOthers } = await req.json();
   if (!type || !weight || !reps) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
   const oneRM = weight * (1 + reps / 30);
   const userId = (session.user as any).id;
+  const username = session.user?.name ?? "Someone";
 
   const lift = await prisma.lift.create({
     data: { userId, type, weight, reps, oneRM },
   });
+
+  if (notifyOthers) {
+    const liftLabels: Record<string, string> = {
+      squanch: "Squanch (Squat)",
+      dunch: "Dunch (Deadlift)",
+      bunch: "Bunch (Bench)",
+    };
+    const liftLabel = liftLabels[type] ?? type;
+    sendPushToAllExcept(userId, {
+      title: `💪 ${username} hit the gym`,
+      body: `${username} just logged ${weight}lbs × ${reps} on ${liftLabel} (1RM: ${Math.round(oneRM)}lbs)`,
+      url: `/boys/${username}/lifts/${type}`,
+    }).catch(() => {});
+  }
 
   return NextResponse.json(lift);
 }

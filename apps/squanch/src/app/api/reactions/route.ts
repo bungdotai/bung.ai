@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { upsertPendingNotification, flushPendingNotifications } from "@/lib/notifications";
 
 const VALID_EMOJIS = ["💪", "😂", "🤮"];
 
@@ -28,7 +29,16 @@ export async function POST(req: Request) {
   } else {
     const reaction = await prisma.reaction.create({
       data: { liftId, authorId, emoji },
+      include: { lift: { select: { userId: true } } },
     });
-    return NextResponse.json({ action: "added", reaction });
+
+    const liftOwnerId = reaction.lift.userId;
+    if (liftOwnerId !== authorId) {
+      await upsertPendingNotification(liftOwnerId, liftId, authorId, "reaction", emoji);
+      flushPendingNotifications().catch(() => {});
+    }
+
+    const { lift: _lift, ...reactionResponse } = reaction;
+    return NextResponse.json({ action: "added", reaction: reactionResponse });
   }
 }

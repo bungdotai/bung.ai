@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
+import NotificationToggle from "./NotificationToggle";
 
 export default function Nav() {
   const { data: session, status } = useSession();
@@ -11,6 +12,7 @@ export default function Nav() {
       {status === "loading" ? null : session ? (
         <>
           <a href={`/boys/${session.user?.name}`} className="text-amber-400 hover:text-amber-300 transition font-medium">{session.user?.name}</a>
+          <NotificationToggle />
           <a href="/log" className="text-neutral-300 hover:text-white transition">Log</a>
           <button
             onClick={() => signOut()}
