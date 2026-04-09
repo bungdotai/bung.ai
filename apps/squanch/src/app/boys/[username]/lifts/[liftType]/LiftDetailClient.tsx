@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,7 +11,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { LiftEntry, ReactionBar, CommentSection } from "@/app/components/LiftInteractions";
+import { LiftEntry, LiftInteractionsClient } from "@/app/components/LiftInteractions";
 
 interface Props {
   username: string;
@@ -25,10 +26,15 @@ export default function LiftDetailClient({
   liftType,
   liftLabel,
   chartColor,
-  lifts,
+  lifts: initialLifts,
 }: Props) {
   const { data: session } = useSession();
   const currentUserId = (session?.user as any)?.id ?? null;
+  const [lifts, setLifts] = useState<LiftEntry[]>(initialLifts);
+
+  const handleDelete = (liftId: string) => {
+    setLifts((prev) => prev.filter((l) => l.id !== liftId));
+  };
 
   // Group by calendar day (LA time), keep best 1RM per day
   const byDay = new Map<string, number>();
@@ -104,8 +110,7 @@ export default function LiftDetailClient({
                     </span>
                   </div>
                 </div>
-                <ReactionBar lift={lift} currentUserId={currentUserId} />
-                <CommentSection lift={lift} currentUserId={currentUserId} />
+                <LiftInteractionsClient lift={lift} currentUserId={currentUserId} onDelete={handleDelete} />
               </div>
             ))}
           </div>

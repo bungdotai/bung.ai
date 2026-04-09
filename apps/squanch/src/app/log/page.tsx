@@ -39,6 +39,13 @@ export default function LogPage() {
     if (res.ok) setMyLifts(await res.json());
   };
 
+  const handleDelete = async (liftId: string) => {
+    const res = await fetch(`/api/lifts/${liftId}`, { method: "DELETE" });
+    if (res.ok) {
+      setMyLifts((prev) => prev.filter((l) => l.id !== liftId));
+    }
+  };
+
   useEffect(() => {
     if (status === "authenticated") fetchLifts();
   }, [status]);
@@ -161,12 +168,19 @@ export default function LogPage() {
               ) : (
                 <ul className="space-y-2 text-sm">
                   {recent.map((l) => (
-                    <li key={l.id} className="flex justify-between text-neutral-300">
+                    <li key={l.id} className="flex justify-between items-center text-neutral-300">
                       <span>
                         {l.weight}×{l.reps}
                       </span>
-                      <span className="text-neutral-500">
+                      <span className="flex items-center gap-3 text-neutral-500">
                         1RM: {Math.round(l.oneRM)}
+                        <button
+                          onClick={() => handleDelete(l.id)}
+                          className="text-neutral-700 hover:text-red-400 transition text-xs"
+                          title="Delete lift"
+                        >
+                          ×
+                        </button>
                       </span>
                     </li>
                   ))}

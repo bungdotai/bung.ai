@@ -18,6 +18,8 @@ export interface Reaction {
 
 export interface LiftEntry {
   id: string;
+  userId: string;
+  type: string;
   weight: number;
   reps: number;
   oneRM: number;
@@ -151,14 +153,40 @@ export function CommentSection({
 export function LiftInteractionsClient({
   lift,
   currentUserId,
+  onDelete,
 }: {
   lift: LiftEntry;
   currentUserId: string | null;
+  onDelete?: (liftId: string) => void;
 }) {
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    if (deleting) return;
+    setDeleting(true);
+    const res = await fetch(`/api/lifts/${lift.id}`, { method: "DELETE" });
+    if (res.ok) {
+      onDelete?.(lift.id);
+    } else {
+      setDeleting(false);
+    }
+  };
+
   return (
     <>
       <ReactionBar lift={lift} currentUserId={currentUserId} />
       <CommentSection lift={lift} currentUserId={currentUserId} />
+      {currentUserId && currentUserId === lift.userId && (
+        <div className="mt-2">
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            className="text-xs text-neutral-600 hover:text-red-400 transition disabled:opacity-40"
+          >
+            {deleting ? "Deleting..." : "Delete lift"}
+          </button>
+        </div>
+      )}
     </>
   );
 }
