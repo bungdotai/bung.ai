@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { DeleteLiftButton } from "@/app/components/LiftInteractions";
 
 interface Lift {
   id: string;
@@ -39,11 +40,8 @@ export default function LogPage() {
     if (res.ok) setMyLifts(await res.json());
   };
 
-  const handleDelete = async (liftId: string) => {
-    const res = await fetch(`/api/lifts/${liftId}`, { method: "DELETE" });
-    if (res.ok) {
-      setMyLifts((prev) => prev.filter((l) => l.id !== liftId));
-    }
+  const handleDelete = (liftId: string) => {
+    setMyLifts((prev) => prev.filter((l) => l.id !== liftId));
   };
 
   useEffect(() => {
@@ -174,13 +172,7 @@ export default function LogPage() {
                       </span>
                       <span className="flex items-center gap-3 text-neutral-500">
                         1RM: {Math.round(l.oneRM)}
-                        <button
-                          onClick={() => handleDelete(l.id)}
-                          className="text-neutral-700 hover:text-red-400 transition text-xs"
-                          title="Delete lift"
-                        >
-                          ×
-                        </button>
+                        <DeleteLiftButton liftId={l.id} onDelete={handleDelete} />
                       </span>
                     </li>
                   ))}

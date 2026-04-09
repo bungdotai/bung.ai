@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { LiftEntry, LiftInteractionsClient } from "@/app/components/LiftInteractions";
+import { LiftEntry, LiftInteractionsClient, DeleteLiftButton } from "@/app/components/LiftInteractions";
 
 interface Props {
   username: string;
@@ -88,8 +88,13 @@ export default function LiftDetailClient({
             {lifts.map((lift) => (
               <div
                 key={lift.id}
-                className="bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-4"
+                className="relative bg-neutral-900 border border-neutral-800 rounded-xl px-6 py-4"
               >
+                {currentUserId && currentUserId === lift.userId && (
+                  <div className="absolute top-2 right-2">
+                    <DeleteLiftButton liftId={lift.id} onDelete={handleDelete} />
+                  </div>
+                )}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div className="text-white font-medium">
                     {lift.weight} lbs × {lift.reps} reps
@@ -110,7 +115,7 @@ export default function LiftDetailClient({
                     </span>
                   </div>
                 </div>
-                <LiftInteractionsClient lift={lift} currentUserId={currentUserId} onDelete={handleDelete} />
+                <LiftInteractionsClient lift={lift} currentUserId={currentUserId} />
               </div>
             ))}
           </div>

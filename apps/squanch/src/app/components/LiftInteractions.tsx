@@ -150,43 +150,77 @@ export function CommentSection({
   );
 }
 
-export function LiftInteractionsClient({
-  lift,
-  currentUserId,
+export function DeleteLiftButton({
+  liftId,
   onDelete,
 }: {
-  lift: LiftEntry;
-  currentUserId: string | null;
+  liftId: string;
   onDelete?: (liftId: string) => void;
 }) {
+  const [confirming, setConfirming] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
   const handleDelete = async () => {
     if (deleting) return;
     setDeleting(true);
-    const res = await fetch(`/api/lifts/${lift.id}`, { method: "DELETE" });
+    const res = await fetch(`/api/lifts/${liftId}`, { method: "DELETE" });
     if (res.ok) {
-      onDelete?.(lift.id);
+      onDelete?.(liftId);
     } else {
       setDeleting(false);
+      setConfirming(false);
     }
   };
 
   return (
     <>
-      <ReactionBar lift={lift} currentUserId={currentUserId} />
-      <CommentSection lift={lift} currentUserId={currentUserId} />
-      {currentUserId && currentUserId === lift.userId && (
-        <div className="mt-2">
-          <button
-            onClick={handleDelete}
-            disabled={deleting}
-            className="text-xs text-neutral-600 hover:text-red-400 transition disabled:opacity-40"
-          >
-            {deleting ? "Deleting..." : "Delete lift"}
-          </button>
+      <button
+        onClick={() => setConfirming(true)}
+        className="text-neutral-600 hover:text-red-400 transition text-base leading-none"
+        title="Delete lift"
+        aria-label="Delete lift"
+      >
+        ×
+      </button>
+      {confirming && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="bg-neutral-900 border border-neutral-700 rounded-xl p-6 max-w-sm w-full mx-4 space-y-4">
+            <p className="text-white font-medium">Delete this lift?</p>
+            <p className="text-neutral-400 text-sm">This cannot be undone.</p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setConfirming(false)}
+                disabled={deleting}
+                className="px-4 py-2 text-sm text-neutral-300 hover:text-white transition disabled:opacity-40"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="px-4 py-2 text-sm bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white rounded-lg transition"
+              >
+                {deleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
+    </>
+  );
+}
+
+export function LiftInteractionsClient({
+  lift,
+  currentUserId,
+}: {
+  lift: LiftEntry;
+  currentUserId: string | null;
+}) {
+  return (
+    <>
+      <ReactionBar lift={lift} currentUserId={currentUserId} />
+      <CommentSection lift={lift} currentUserId={currentUserId} />
     </>
   );
 }
