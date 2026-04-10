@@ -36,6 +36,7 @@ export default function Home() {
   const [newName, setNewName] = useState("");
   const [addingName, setAddingName] = useState(false);
   const [togglingName, setTogglingName] = useState<string | null>(null);
+  const [locationWarning, setLocationWarning] = useState(false);
   const newNameRef = useRef<HTMLInputElement>(null);
 
   const refreshSession = async () => {
@@ -77,6 +78,7 @@ export default function Home() {
 
   const startSession = async () => {
     setActionLoading(true);
+    setLocationWarning(false);
     try {
       let coords: { lat: number | null; lng: number | null } = {
         lat: null,
@@ -85,14 +87,27 @@ export default function Home() {
       try {
         coords = await getLocation();
       } catch {
-        // proceed without location
+        setLocationWarning(true);
       }
       const res = await fetch("/api/sessions/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(coords),
       });
-      if (res.ok) await refreshSession();
+      if (res.ok) {
+        await refreshSession();
+      } else {
+        let message = `Failed to start session (${res.status})`;
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          // use status fallback
+        }
+        alert(message);
+      }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to start session");
     } finally {
       setActionLoading(false);
     }
@@ -103,8 +118,23 @@ export default function Home() {
     if (!confirm("End this session?")) return;
     setActionLoading(true);
     try {
-      await fetch(`/api/sessions/${session.id}/end`, { method: "POST" });
-      setSession(null);
+      const res = await fetch(`/api/sessions/${session.id}/end`, {
+        method: "POST",
+      });
+      if (res.ok) {
+        setSession(null);
+      } else {
+        let message = `Failed to end session (${res.status})`;
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          // use status fallback
+        }
+        alert(message);
+      }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to end session");
     } finally {
       setActionLoading(false);
     }
@@ -115,19 +145,33 @@ export default function Home() {
     setTogglingName(name);
     try {
       const existing = session.attendees.find((a) => a.name === name);
+      let res: Response;
       if (existing) {
-        await fetch(
+        res = await fetch(
           `/api/sessions/${session.id}/attendees/${existing.id}`,
           { method: "DELETE" }
         );
       } else {
-        await fetch(`/api/sessions/${session.id}/attendees`, {
+        res = await fetch(`/api/sessions/${session.id}/attendees`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name }),
         });
       }
-      await refreshSession();
+      if (res.ok) {
+        await refreshSession();
+      } else {
+        let message = `Failed to update attendee (${res.status})`;
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          // use status fallback
+        }
+        alert(message);
+      }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to update attendee");
     } finally {
       setTogglingName(null);
     }
@@ -137,14 +181,27 @@ export default function Home() {
     if (!session || !newName.trim()) return;
     setAddingName(true);
     try {
-      await fetch(`/api/sessions/${session.id}/attendees`, {
+      const res = await fetch(`/api/sessions/${session.id}/attendees`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newName.trim() }),
       });
-      await Promise.all([refreshSession(), refreshKnownAttendees()]);
-      setNewName("");
-      newNameRef.current?.focus();
+      if (res.ok) {
+        await Promise.all([refreshSession(), refreshKnownAttendees()]);
+        setNewName("");
+        newNameRef.current?.focus();
+      } else {
+        let message = `Failed to add attendee (${res.status})`;
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          // use status fallback
+        }
+        alert(message);
+      }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to add attendee");
     } finally {
       setAddingName(false);
     }
@@ -223,6 +280,11 @@ export default function Home() {
           >
             {actionLoading ? "Locating..." : "Start Wingdome Session 🍗"}
           </button>
+          {locationWarning && (
+            <p className="text-xs text-center" style={{ color: "#888" }}>
+              Location unavailable — defaulting to Wingdome Seattle
+            </p>
+          )}
         </div>
       ) : (
         /* Active session */
