@@ -275,7 +275,7 @@ export default function Home() {
           className="text-sm px-3 py-1.5 rounded-lg transition-colors"
           style={{ color: "#888", border: "1px solid #222" }}
         >
-          History
+          Sessions
         </Link>
       </div>
 

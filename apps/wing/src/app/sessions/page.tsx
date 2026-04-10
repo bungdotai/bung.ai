@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
+
 export const dynamic = "force-dynamic";
 
 export default async function SessionsPage() {
@@ -54,9 +55,10 @@ export default async function SessionsPage() {
             }
 
             return (
-              <div
+              <Link
                 key={session.id}
-                className="rounded-xl p-4"
+                href={`/sessions/${session.id}`}
+                className="block rounded-xl p-4 transition-colors hover:border-orange-500/40 active:opacity-80"
                 style={{
                   background: "#111",
                   border: `1px solid ${isActive ? "#2d6a2d" : "#222"}`,
@@ -120,7 +122,7 @@ export default async function SessionsPage() {
                     No attendees logged
                   </div>
                 )}
-              </div>
+              </Link>
             );
           })}
         </div>
