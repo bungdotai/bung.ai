@@ -150,30 +150,36 @@ export default function Home() {
     setTogglingName(name);
     try {
       const existing = session.attendees.find((a) => a.name === name);
-      let res: Response;
       if (existing) {
-        res = await fetch(
+        const res = await fetch(
           `/api/sessions/${session.id}/attendees/${existing.id}`,
           { method: "DELETE" }
         );
+        if (res.ok) {
+          // Update local state directly - no GET needed
+          setSession(prev => prev ? {
+            ...prev,
+            attendees: prev.attendees.filter(a => a.id !== existing.id)
+          } : prev);
+        } else {
+          alert(`Failed to remove attendee (${res.status})`);
+        }
       } else {
-        res = await fetch(`/api/sessions/${session.id}/attendees`, {
+        const res = await fetch(`/api/sessions/${session.id}/attendees`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name }),
         });
-      }
-      if (res.ok) {
-        await refreshSession();
-      } else {
-        let message = `Failed to update attendee (${res.status})`;
-        try {
-          const data = await res.json();
-          if (data?.error) message = data.error;
-        } catch {
-          // use status fallback
+        if (res.ok) {
+          // Update local state directly - no GET needed
+          const newAttendee = await res.json();
+          setSession(prev => prev ? {
+            ...prev,
+            attendees: [...prev.attendees, newAttendee]
+          } : prev);
+        } else {
+          alert(`Failed to add attendee (${res.status})`);
         }
-        alert(message);
       }
     } catch (err) {
       alert(err instanceof Error ? err.message : "Failed to update attendee");
@@ -192,7 +198,13 @@ export default function Home() {
         body: JSON.stringify({ name: newName.trim() }),
       });
       if (res.ok) {
-        await Promise.all([refreshSession(), refreshKnownAttendees()]);
+        // Update local state directly - no GET needed
+        const newAttendee = await res.json();
+        setSession(prev => prev ? {
+          ...prev,
+          attendees: [...prev.attendees, newAttendee]
+        } : prev);
+        await refreshKnownAttendees();
         setNewName("");
         newNameRef.current?.focus();
       } else {
