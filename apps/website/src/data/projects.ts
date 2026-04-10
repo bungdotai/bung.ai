@@ -31,6 +31,13 @@ export const projects: Project[] = [
     status: "live",
   },
   {
+    name: "Wing 🍗",
+    emoji: "🍗",
+    description: "Track who shows up to Wingdome and where",
+    url: "https://wing.bung.ai",
+    status: "live",
+  },
+  {
     name: "More coming soon...",
     emoji: "✨",
     description: "New projects are always brewing. Stay tuned.",
