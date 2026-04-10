@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface LocationEntry {
@@ -29,6 +30,7 @@ interface KnownAttendee {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
   const [knownAttendees, setKnownAttendees] = useState<KnownAttendee[]>([]);
   const [loading, setLoading] = useState(true);
@@ -125,6 +127,7 @@ export default function Home() {
       });
       if (res.ok) {
         setSession(null);
+        router.push("/sessions");
       } else {
         let message = `Failed to end session (${res.status})`;
         try {
