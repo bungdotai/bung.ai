@@ -40,7 +40,7 @@ export default function Home() {
   const newNameRef = useRef<HTMLInputElement>(null);
 
   const refreshSession = async () => {
-    const res = await fetch("/api/sessions/active");
+    const res = await fetch(`/api/sessions/active?t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       setSession(data);
@@ -50,7 +50,7 @@ export default function Home() {
   };
 
   const refreshKnownAttendees = async () => {
-    const res = await fetch("/api/attendees/known");
+    const res = await fetch(`/api/attendees/known?t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       setKnownAttendees(await res.json());
     }
@@ -95,7 +95,9 @@ export default function Home() {
         body: JSON.stringify(coords),
       });
       if (res.ok) {
-        await refreshSession();
+        // Directly set state from POST response to avoid Safari GET caching issues
+        const newSession = await res.json();
+        setSession(newSession);
       } else {
         let message = `Failed to start session (${res.status})`;
         try {

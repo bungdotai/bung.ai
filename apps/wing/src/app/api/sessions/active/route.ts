@@ -9,8 +9,9 @@ export async function GET() {
       attendees: { orderBy: { markedAt: "asc" } },
     },
   });
+  const headers = { 'Cache-Control': 'no-store, no-cache, must-revalidate' };
   if (!session) {
-    return NextResponse.json({ error: "No active session" }, { status: 404 });
+    return NextResponse.json({ error: "No active session" }, { status: 404, headers });
   }
-  return NextResponse.json(session);
+  return NextResponse.json(session, { headers });
 }
