@@ -12,6 +12,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { LiftEntry, LiftInteractionsClient, DeleteLiftButton } from "@/app/components/LiftInteractions";
+import { formatWeight } from "@/lib/format";
 
 interface Props {
   username: string;
@@ -97,7 +98,7 @@ export default function LiftDetailClient({
                 )}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div className="text-white font-medium">
-                    {lift.weight} lbs × {lift.reps} reps
+                    {formatWeight(lift.weight)} lbs × {lift.reps} reps
                   </div>
                   <div className="flex items-center gap-4 text-sm text-neutral-400">
                     <span>

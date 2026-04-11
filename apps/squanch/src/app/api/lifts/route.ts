@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendPushToAllExcept } from "@/lib/push";
+import { formatWeight } from "@/lib/format";
 
 export async function GET() {
   const lifts = await prisma.lift.findMany({
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
   }
 
   const { type, weight, reps, notifyOthers } = await req.json();
-  if (!type || !weight || !reps) {
+  if (!type || weight == null || !reps) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
     const liftLabel = liftLabels[type] ?? type;
     sendPushToAllExcept(userId, {
       title: `💪 ${username} hit the gym`,
-      body: `${username} just logged ${weight}lbs × ${reps} on ${liftLabel} (1RM: ${Math.round(oneRM)}lbs)`,
+      body: `${username} just logged ${formatWeight(weight)}lbs × ${reps} on ${liftLabel} (1RM: ${Math.round(oneRM)}lbs)`,
       url: `/boys/${username}/lifts/${type}`,
     }).catch(() => {});
   }

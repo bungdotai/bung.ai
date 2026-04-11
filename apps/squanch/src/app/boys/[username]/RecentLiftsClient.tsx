@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { LiftEntry, LiftInteractionsClient, DeleteLiftButton } from "@/app/components/LiftInteractions";
+import { formatWeight } from "@/lib/format";
 
 const LIFT_TYPES = [
   { key: "squanch", label: "Squanch (Squat)", color: "text-blue-400" },
@@ -43,7 +44,7 @@ export default function RecentLiftsClient({
                   {lt?.label ?? lift.type}
                 </span>
                 <span className="text-white">
-                  {lift.weight} lbs × {lift.reps} reps
+                  {formatWeight(lift.weight)} lbs × {lift.reps} reps
                 </span>
               </div>
               <div className="flex items-center gap-6 text-sm text-neutral-400">

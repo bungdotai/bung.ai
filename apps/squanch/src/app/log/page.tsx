@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { DeleteLiftButton } from "@/app/components/LiftInteractions";
+import { formatWeight } from "@/lib/format";
 
 interface Lift {
   id: string;
@@ -115,7 +116,7 @@ export default function LogPage() {
                 onChange={(e) => setWeight(e.target.value)}
                 className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500"
                 required
-                min="1"
+                min="0"
                 step="0.5"
               />
             </div>
@@ -168,7 +169,7 @@ export default function LogPage() {
                   {recent.map((l) => (
                     <li key={l.id} className="flex justify-between items-center text-neutral-300">
                       <span>
-                        {l.weight}×{l.reps}
+                        {formatWeight(l.weight)}×{l.reps}
                       </span>
                       <span className="flex items-center gap-3 text-neutral-500">
                         1RM: {Math.round(l.oneRM)}
