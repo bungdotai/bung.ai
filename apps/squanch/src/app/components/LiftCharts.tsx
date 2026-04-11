@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { getUserColor } from "@/lib/userColors";
 
 interface LiftData {
   id: string;
@@ -26,10 +27,6 @@ const LIFT_TYPES = [
   { key: "bunch", label: "Bunch (Bench)", color: "#a855f7" },
 ];
 
-const USER_COLORS = [
-  "#3b82f6", "#22c55e", "#a855f7", "#f59e0b", "#ef4444",
-  "#06b6d4", "#ec4899", "#84cc16", "#f97316", "#6366f1",
-];
 
 export default function LiftCharts() {
   const [lifts, setLifts] = useState<LiftData[]>([]);
@@ -89,12 +86,12 @@ export default function LiftCharts() {
                   contentStyle={{ background: "#1a1a1a", border: "1px solid #333", borderRadius: 8 }}
                 />
                 <Legend />
-                {users.map((user, i) => (
+                {users.map((user) => (
                   <Line
                     key={user}
                     type="monotone"
                     dataKey={user}
-                    stroke={USER_COLORS[i % USER_COLORS.length]}
+                    stroke={getUserColor(user)}
                     strokeWidth={2}
                     dot={{ r: 4 }}
                     connectNulls

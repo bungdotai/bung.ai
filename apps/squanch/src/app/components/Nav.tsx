@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import NotificationToggle from "./NotificationToggle";
+import { getUserColor } from "@/lib/userColors";
 
 export default function Nav() {
   const { data: session, status } = useSession();
@@ -43,7 +44,7 @@ export default function Nav() {
                 <a href="/log" onClick={close} className="flex items-center gap-2 py-3 px-6 text-neutral-300 hover:text-white transition">
                   📋 Log Lift
                 </a>
-                <a href={`/boys/${session.user?.name}`} onClick={close} className="flex items-center gap-2 py-3 px-6 text-amber-400 hover:text-amber-300 transition font-medium">
+                <a href={`/boys/${session.user?.name}`} onClick={close} className="flex items-center gap-2 py-3 px-6 transition font-medium" style={{ color: getUserColor(session.user?.name ?? "") }}>
                   {session.user?.name}
                 </a>
                 <button
@@ -68,7 +69,7 @@ export default function Nav() {
         <a href="/boys" className="text-neutral-300 hover:text-white transition">Boys</a>
         {status === "loading" ? null : session ? (
           <>
-            <a href={`/boys/${session.user?.name}`} className="text-amber-400 hover:text-amber-300 transition font-medium">{session.user?.name}</a>
+            <a href={`/boys/${session.user?.name}`} className="transition font-medium" style={{ color: getUserColor(session.user?.name ?? "") }}>{session.user?.name}</a>
             <NotificationToggle />
             <a href="/log" className="text-neutral-300 hover:text-white transition">Log</a>
             <button

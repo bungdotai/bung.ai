@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { LiftEntry, LiftInteractionsClient, DeleteLiftButton } from "@/app/components/LiftInteractions";
 import { formatWeight } from "@/lib/format";
+import { getUserColor } from "@/lib/userColors";
 
 interface Props {
   username: string;
@@ -66,7 +67,7 @@ export default function LiftDetailClient({
               <Line
                 type="monotone"
                 dataKey="oneRM"
-                stroke={chartColor}
+                stroke={getUserColor(username)}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 connectNulls

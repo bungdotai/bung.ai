@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getUserColor } from "@/lib/userColors";
 
 export interface Comment {
   id: string;
@@ -123,7 +124,7 @@ export function CommentSection({
     <div className="mt-3 space-y-2">
       {comments.map((c) => (
         <div key={c.id} className="text-sm text-neutral-300">
-          <span className="text-amber-400 font-medium">{c.author.username}</span>
+          <span className="font-medium" style={{ color: getUserColor(c.author.username) }}>{c.author.username}</span>
           <span className="text-neutral-500 mx-1">·</span>
           <span>{c.body}</span>
         </div>
