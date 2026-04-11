@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        String                @id @default(cuid())
+  username                  String                @unique
+  password                  String
+  createdAt                 DateTime              @default(now())
+  lifts                     Lift[]
+  comments                  Comment[]             @relation("CommentAuthor")
+  reactions                 Reaction[]            @relation("ReactionAuthor")
+  pushSubscriptions         PushSubscription[]
+  ownedPendingNotifications PendingNotification[] @relation("PendingNotifOwner")
+  actorPendingNotifications PendingNotification[] @relation("PendingNotifActor")
+}
+
+model Lift {
+  id                   String                @id @default(cuid())
+  userId               String
+  user                 User                  @relation(fields: [userId], references: [id])
+  type                 String
+  weight               Float
+  reps                 Int
+  oneRM                Float
+  loggedAt             DateTime              @default(now())
+  comments             Comment[]
+  reactions            Reaction[]
+  pendingNotifications PendingNotification[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  liftId    String
+  lift      Lift     @relation(fields: [liftId], references: [id])
+  authorId  String
+  author    User     @relation("CommentAuthor", fields: [authorId], references: [id])
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  liftId    String
+  lift      Lift     @relation(fields: [liftId], references: [id])
+  authorId  String
+  author    User     @relation("ReactionAuthor", fields: [authorId], references: [id])
+  emoji     String
+  createdAt DateTime @default(now())
+
+  @@unique([liftId, authorId, emoji])
+}
+
+model InviteCode {
+  id     String    @id @default(cuid())
+  code   String    @unique
+  usedBy String?
+  usedAt DateTime?
+}
+
+model DailyUpdate {
+  id          String   @id @default(cuid())
+  content     String
+  generatedAt DateTime @default(now())
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+}
+
+model PendingNotification {
+  id          String   @id @default(cuid())
+  liftOwnerId String
+  liftOwner   User     @relation("PendingNotifOwner", fields: [liftOwnerId], references: [id])
+  liftId      String
+  lift        Lift     @relation(fields: [liftId], references: [id])
+  actorId     String
+  actor       User     @relation("PendingNotifActor", fields: [actorId], references: [id])
+  comments    String[] @default([])
+  reactions   String[] @default([])
+  sendAfter   DateTime
+  sent        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([liftOwnerId, liftId, actorId, sent])
+}

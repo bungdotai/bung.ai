@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     sendPushToAllExcept(userId, {
       title: `💪 ${username} hit the gym`,
       body: `${username} just logged ${formatWeight(weight)}lbs × ${reps} on ${liftLabel} (1RM: ${Math.round(oneRM)}lbs)`,
-      url: `/boys/${username}/lifts/${type}`,
+      url: `${process.env.NEXTAUTH_URL || 'https://squanch.bung.ai'}/boys/${username}/lifts/${type}`,
     }).catch(() => {});
   }
 

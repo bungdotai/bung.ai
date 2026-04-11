@@ -55,7 +55,7 @@ export async function flushPendingNotifications() {
     due.map(async (n) => {
       const liftLabel = LIFT_LABELS[n.lift.type] ?? n.lift.type;
       const actor = n.actor.username;
-      const url = `/boys/${n.liftOwner.username}/lifts/${n.lift.type}`;
+      const url = `${process.env.NEXTAUTH_URL || 'https://squanch.bung.ai'}/boys/${n.liftOwner.username}/lifts/${n.lift.type}`;
 
       let body: string;
       if (n.reactions.length > 0 && n.comments.length > 0) {
