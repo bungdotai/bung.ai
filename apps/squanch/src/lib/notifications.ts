@@ -53,6 +53,14 @@ export async function flushPendingNotifications() {
 
   await Promise.allSettled(
     due.map(async (n) => {
+      // Atomically claim this notification by marking it sent before doing any work.
+      // If another concurrent flush already claimed it, the update will match 0 rows — skip.
+      const claimed = await prisma.pendingNotification.updateMany({
+        where: { id: n.id, sent: false },
+        data: { sent: true },
+      });
+      if (claimed.count === 0) return; // already handled by a concurrent flush
+
       const liftLabel = LIFT_LABELS[n.lift.type] ?? n.lift.type;
       const actor = n.actor.username;
       const url = `${process.env.NEXTAUTH_URL || 'https://squanch.bung.ai'}/boys/${n.liftOwner.username}/lifts/${n.lift.type}`;
@@ -72,11 +80,6 @@ export async function flushPendingNotifications() {
         title: `💬 ${actor} on your ${liftLabel}`,
         body,
         url,
-      });
-
-      await prisma.pendingNotification.update({
-        where: { id: n.id },
-        data: { sent: true },
       });
     })
   );
