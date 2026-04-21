@@ -149,7 +149,7 @@ Write a coaching message for ${username}. Be specific — mention actual weights
       await sendPushToUser(userId, {
         title: "Coach Bung checked in",
         body: content.slice(0, 120) + (content.length > 120 ? "…" : ""),
-        url: `${process.env.NEXTAUTH_URL || "https://squanch.bung.ai"}/boys/${username}`,
+        url: `${process.env.NEXTAUTH_URL || "https://squanch.bung.ai"}/boys/${username}?tab=coach`,
       });
 
       // Delete the pending row

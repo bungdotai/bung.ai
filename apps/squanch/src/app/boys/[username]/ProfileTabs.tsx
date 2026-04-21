@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import CoachBungTab from "./CoachBungTab";
 
 type Tab = "stats" | "coach";
@@ -12,7 +13,14 @@ export default function ProfileTabs({
   username: string;
   children: React.ReactNode;
 }) {
-  const [active, setActive] = useState<Tab>("stats");
+  const searchParams = useSearchParams();
+  const [active, setActive] = useState<Tab>(
+    searchParams.get("tab") === "coach" ? "coach" : "stats"
+  );
+
+  useEffect(() => {
+    if (searchParams.get("tab") === "coach") setActive("coach");
+  }, [searchParams]);
 
   return (
     <div className="space-y-6">
