@@ -1,8 +1,1 @@
-{
-  "crons": [
-    {
-      "path": "/api/coach/process-pending",
-      "schedule": "*/3 * * * *"
-    }
-  ]
-}
+{}
