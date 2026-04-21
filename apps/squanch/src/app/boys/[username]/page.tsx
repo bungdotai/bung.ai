@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 import RecentLiftsClient from "./RecentLiftsClient";
 import { computeEarnedBadges } from "@/lib/badges";
 import BadgeIcon from "@/app/components/BadgeIcon";
+import ProfileTabs from "./ProfileTabs";
 
 export const dynamic = "force-dynamic";
 
@@ -101,43 +102,47 @@ export default async function UserStatsPage({
         </p>
       </div>
 
-      {/* Badges */}
-      {earnedBadges.length > 0 && (
-        <div>
-          <h2 className="text-lg font-semibold text-neutral-300 mb-4">Badges</h2>
-          <div className="flex flex-wrap gap-3">
-            {earnedBadges.map(b => <BadgeIcon key={b.slug} badge={b} size="lg" />)}
+      <ProfileTabs username={user.username}>
+        <div className="space-y-8">
+          {/* Badges */}
+          {earnedBadges.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-neutral-300 mb-4">Badges</h2>
+              <div className="flex flex-wrap gap-3">
+                {earnedBadges.map(b => <BadgeIcon key={b.slug} badge={b} size="lg" />)}
+              </div>
+            </div>
+          )}
+
+          {/* All-time PRs */}
+          <div>
+            <h2 className="text-lg font-semibold text-neutral-300 mb-4">All-Time PRs</h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {LIFT_TYPES.map((lt) => (
+                <Link
+                  key={lt.key}
+                  href={`/boys/${user.username}/lifts/${lt.key}`}
+                  className={`bg-neutral-900 border ${lt.border} hover:border-opacity-80 rounded-xl p-4 sm:p-6 transition group`}
+                >
+                  <div className={`text-sm font-medium ${lt.color} mb-1`}>{lt.label}</div>
+                  <div className="text-2xl font-bold text-white">
+                    {prs[lt.key] > 0 ? `${Math.round(prs[lt.key])} lbs` : "—"}
+                  </div>
+                  <div className="text-xs text-neutral-500 mt-2 group-hover:text-amber-400 transition">
+                    View history →
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Recent lift history */}
+          <div>
+            <h2 className="text-lg font-semibold text-neutral-300 mb-4">Recent Lifts</h2>
+            <RecentLiftsClient initialLifts={recentLifts} currentUserId={currentUserId} />
           </div>
         </div>
-      )}
-
-      {/* All-time PRs */}
-      <div>
-        <h2 className="text-lg font-semibold text-neutral-300 mb-4">All-Time PRs</h2>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {LIFT_TYPES.map((lt) => (
-            <Link
-              key={lt.key}
-              href={`/boys/${user.username}/lifts/${lt.key}`}
-              className={`bg-neutral-900 border ${lt.border} hover:border-opacity-80 rounded-xl p-4 sm:p-6 transition group`}
-            >
-              <div className={`text-sm font-medium ${lt.color} mb-1`}>{lt.label}</div>
-              <div className="text-2xl font-bold text-white">
-                {prs[lt.key] > 0 ? `${Math.round(prs[lt.key])} lbs` : "—"}
-              </div>
-              <div className="text-xs text-neutral-500 mt-2 group-hover:text-amber-400 transition">
-                View history →
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Recent lift history */}
-      <div>
-        <h2 className="text-lg font-semibold text-neutral-300 mb-4">Recent Lifts</h2>
-        <RecentLiftsClient initialLifts={recentLifts} currentUserId={currentUserId} />
-      </div>
+      </ProfileTabs>
     </div>
   );
 }

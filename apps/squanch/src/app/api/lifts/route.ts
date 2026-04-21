@@ -32,6 +32,14 @@ export async function POST(req: Request) {
     data: { userId, type, weight, reps, oneRM },
   });
 
+  // Schedule Coach Bung message — debounced to 90 min after last lift in session
+  const scheduledAt = new Date(Date.now() + 90 * 60 * 1000);
+  prisma.pendingCoaching.upsert({
+    where: { userId },
+    create: { userId, scheduledAt, sessionStart: lift.loggedAt },
+    update: { scheduledAt },
+  }).catch(() => {});
+
   if (notifyOthers) {
     const liftLabels: Record<string, string> = {
       squanch: "Squanch (Squat)",

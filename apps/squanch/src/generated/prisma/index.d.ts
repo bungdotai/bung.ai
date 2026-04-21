@@ -49,6 +49,21 @@ export type DailyUpdate = $Result.DefaultSelection<Prisma.$DailyUpdatePayload>
  */
 export type PushSubscription = $Result.DefaultSelection<Prisma.$PushSubscriptionPayload>
 /**
+ * Model UserCoachSettings
+ * 
+ */
+export type UserCoachSettings = $Result.DefaultSelection<Prisma.$UserCoachSettingsPayload>
+/**
+ * Model CoachingMessage
+ * 
+ */
+export type CoachingMessage = $Result.DefaultSelection<Prisma.$CoachingMessagePayload>
+/**
+ * Model PendingCoaching
+ * 
+ */
+export type PendingCoaching = $Result.DefaultSelection<Prisma.$PendingCoachingPayload>
+/**
  * Model PendingNotification
  * 
  */
@@ -246,6 +261,36 @@ export class PrismaClient<
     * ```
     */
   get pushSubscription(): Prisma.PushSubscriptionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.userCoachSettings`: Exposes CRUD operations for the **UserCoachSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserCoachSettings
+    * const userCoachSettings = await prisma.userCoachSettings.findMany()
+    * ```
+    */
+  get userCoachSettings(): Prisma.UserCoachSettingsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.coachingMessage`: Exposes CRUD operations for the **CoachingMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CoachingMessages
+    * const coachingMessages = await prisma.coachingMessage.findMany()
+    * ```
+    */
+  get coachingMessage(): Prisma.CoachingMessageDelegate<ExtArgs>;
+
+  /**
+   * `prisma.pendingCoaching`: Exposes CRUD operations for the **PendingCoaching** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PendingCoachings
+    * const pendingCoachings = await prisma.pendingCoaching.findMany()
+    * ```
+    */
+  get pendingCoaching(): Prisma.PendingCoachingDelegate<ExtArgs>;
 
   /**
    * `prisma.pendingNotification`: Exposes CRUD operations for the **PendingNotification** model.
@@ -704,6 +749,9 @@ export namespace Prisma {
     InviteCode: 'InviteCode',
     DailyUpdate: 'DailyUpdate',
     PushSubscription: 'PushSubscription',
+    UserCoachSettings: 'UserCoachSettings',
+    CoachingMessage: 'CoachingMessage',
+    PendingCoaching: 'PendingCoaching',
     PendingNotification: 'PendingNotification'
   };
 
@@ -720,7 +768,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "lift" | "comment" | "reaction" | "inviteCode" | "dailyUpdate" | "pushSubscription" | "pendingNotification"
+      modelProps: "user" | "lift" | "comment" | "reaction" | "inviteCode" | "dailyUpdate" | "pushSubscription" | "userCoachSettings" | "coachingMessage" | "pendingCoaching" | "pendingNotification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1214,6 +1262,216 @@ export namespace Prisma {
           }
         }
       }
+      UserCoachSettings: {
+        payload: Prisma.$UserCoachSettingsPayload<ExtArgs>
+        fields: Prisma.UserCoachSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserCoachSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserCoachSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.UserCoachSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserCoachSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.UserCoachSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.UserCoachSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.UserCoachSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserCoachSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.UserCoachSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          update: {
+            args: Prisma.UserCoachSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserCoachSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserCoachSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserCoachSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserCoachSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.UserCoachSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserCoachSettings>
+          }
+          groupBy: {
+            args: Prisma.UserCoachSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserCoachSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCoachSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCoachSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      CoachingMessage: {
+        payload: Prisma.$CoachingMessagePayload<ExtArgs>
+        fields: Prisma.CoachingMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CoachingMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CoachingMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.CoachingMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CoachingMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          findMany: {
+            args: Prisma.CoachingMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>[]
+          }
+          create: {
+            args: Prisma.CoachingMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          createMany: {
+            args: Prisma.CoachingMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CoachingMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.CoachingMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          update: {
+            args: Prisma.CoachingMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.CoachingMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CoachingMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CoachingMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoachingMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.CoachingMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCoachingMessage>
+          }
+          groupBy: {
+            args: Prisma.CoachingMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CoachingMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CoachingMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<CoachingMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      PendingCoaching: {
+        payload: Prisma.$PendingCoachingPayload<ExtArgs>
+        fields: Prisma.PendingCoachingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PendingCoachingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PendingCoachingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          findFirst: {
+            args: Prisma.PendingCoachingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PendingCoachingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          findMany: {
+            args: Prisma.PendingCoachingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>[]
+          }
+          create: {
+            args: Prisma.PendingCoachingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          createMany: {
+            args: Prisma.PendingCoachingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PendingCoachingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>[]
+          }
+          delete: {
+            args: Prisma.PendingCoachingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          update: {
+            args: Prisma.PendingCoachingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          deleteMany: {
+            args: Prisma.PendingCoachingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PendingCoachingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PendingCoachingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PendingCoachingPayload>
+          }
+          aggregate: {
+            args: Prisma.PendingCoachingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePendingCoaching>
+          }
+          groupBy: {
+            args: Prisma.PendingCoachingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PendingCoachingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PendingCoachingCountArgs<ExtArgs>
+            result: $Utils.Optional<PendingCoachingCountAggregateOutputType> | number
+          }
+        }
+      }
       PendingNotification: {
         payload: Prisma.$PendingNotificationPayload<ExtArgs>
         fields: Prisma.PendingNotificationFieldRefs
@@ -1451,6 +1709,7 @@ export namespace Prisma {
     pushSubscriptions: number
     ownedPendingNotifications: number
     actorPendingNotifications: number
+    coachingMessages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1460,6 +1719,7 @@ export namespace Prisma {
     pushSubscriptions?: boolean | UserCountOutputTypeCountPushSubscriptionsArgs
     ownedPendingNotifications?: boolean | UserCountOutputTypeCountOwnedPendingNotificationsArgs
     actorPendingNotifications?: boolean | UserCountOutputTypeCountActorPendingNotificationsArgs
+    coachingMessages?: boolean | UserCountOutputTypeCountCoachingMessagesArgs
   }
 
   // Custom InputTypes
@@ -1513,6 +1773,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountActorPendingNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PendingNotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCoachingMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoachingMessageWhereInput
   }
 
 
@@ -1731,6 +1998,9 @@ export namespace Prisma {
     pushSubscriptions?: boolean | User$pushSubscriptionsArgs<ExtArgs>
     ownedPendingNotifications?: boolean | User$ownedPendingNotificationsArgs<ExtArgs>
     actorPendingNotifications?: boolean | User$actorPendingNotificationsArgs<ExtArgs>
+    coachSettings?: boolean | User$coachSettingsArgs<ExtArgs>
+    coachingMessages?: boolean | User$coachingMessagesArgs<ExtArgs>
+    pendingCoaching?: boolean | User$pendingCoachingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1755,6 +2025,9 @@ export namespace Prisma {
     pushSubscriptions?: boolean | User$pushSubscriptionsArgs<ExtArgs>
     ownedPendingNotifications?: boolean | User$ownedPendingNotificationsArgs<ExtArgs>
     actorPendingNotifications?: boolean | User$actorPendingNotificationsArgs<ExtArgs>
+    coachSettings?: boolean | User$coachSettingsArgs<ExtArgs>
+    coachingMessages?: boolean | User$coachingMessagesArgs<ExtArgs>
+    pendingCoaching?: boolean | User$pendingCoachingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1768,6 +2041,9 @@ export namespace Prisma {
       pushSubscriptions: Prisma.$PushSubscriptionPayload<ExtArgs>[]
       ownedPendingNotifications: Prisma.$PendingNotificationPayload<ExtArgs>[]
       actorPendingNotifications: Prisma.$PendingNotificationPayload<ExtArgs>[]
+      coachSettings: Prisma.$UserCoachSettingsPayload<ExtArgs> | null
+      coachingMessages: Prisma.$CoachingMessagePayload<ExtArgs>[]
+      pendingCoaching: Prisma.$PendingCoachingPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2144,6 +2420,9 @@ export namespace Prisma {
     pushSubscriptions<T extends User$pushSubscriptionsArgs<ExtArgs> = {}>(args?: Subset<T, User$pushSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PushSubscriptionPayload<ExtArgs>, T, "findMany"> | Null>
     ownedPendingNotifications<T extends User$ownedPendingNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$ownedPendingNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingNotificationPayload<ExtArgs>, T, "findMany"> | Null>
     actorPendingNotifications<T extends User$actorPendingNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$actorPendingNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingNotificationPayload<ExtArgs>, T, "findMany"> | Null>
+    coachSettings<T extends User$coachSettingsArgs<ExtArgs> = {}>(args?: Subset<T, User$coachSettingsArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    coachingMessages<T extends User$coachingMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$coachingMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findMany"> | Null>
+    pendingCoaching<T extends User$pendingCoachingArgs<ExtArgs> = {}>(args?: Subset<T, User$pendingCoachingArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2608,6 +2887,56 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PendingNotificationScalarFieldEnum | PendingNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.coachSettings
+   */
+  export type User$coachSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    where?: UserCoachSettingsWhereInput
+  }
+
+  /**
+   * User.coachingMessages
+   */
+  export type User$coachingMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    where?: CoachingMessageWhereInput
+    orderBy?: CoachingMessageOrderByWithRelationInput | CoachingMessageOrderByWithRelationInput[]
+    cursor?: CoachingMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CoachingMessageScalarFieldEnum | CoachingMessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.pendingCoaching
+   */
+  export type User$pendingCoachingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    where?: PendingCoachingWhereInput
   }
 
   /**
@@ -8242,6 +8571,2801 @@ export namespace Prisma {
 
 
   /**
+   * Model UserCoachSettings
+   */
+
+  export type AggregateUserCoachSettings = {
+    _count: UserCoachSettingsCountAggregateOutputType | null
+    _min: UserCoachSettingsMinAggregateOutputType | null
+    _max: UserCoachSettingsMaxAggregateOutputType | null
+  }
+
+  export type UserCoachSettingsMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    goalsText: string | null
+    coachingStyle: string | null
+    updatedAt: Date | null
+  }
+
+  export type UserCoachSettingsMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    goalsText: string | null
+    coachingStyle: string | null
+    updatedAt: Date | null
+  }
+
+  export type UserCoachSettingsCountAggregateOutputType = {
+    id: number
+    userId: number
+    goalsText: number
+    coachingStyle: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserCoachSettingsMinAggregateInputType = {
+    id?: true
+    userId?: true
+    goalsText?: true
+    coachingStyle?: true
+    updatedAt?: true
+  }
+
+  export type UserCoachSettingsMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    goalsText?: true
+    coachingStyle?: true
+    updatedAt?: true
+  }
+
+  export type UserCoachSettingsCountAggregateInputType = {
+    id?: true
+    userId?: true
+    goalsText?: true
+    coachingStyle?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserCoachSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserCoachSettings to aggregate.
+     */
+    where?: UserCoachSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserCoachSettings to fetch.
+     */
+    orderBy?: UserCoachSettingsOrderByWithRelationInput | UserCoachSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserCoachSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserCoachSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserCoachSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserCoachSettings
+    **/
+    _count?: true | UserCoachSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserCoachSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserCoachSettingsMaxAggregateInputType
+  }
+
+  export type GetUserCoachSettingsAggregateType<T extends UserCoachSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserCoachSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserCoachSettings[P]>
+      : GetScalarType<T[P], AggregateUserCoachSettings[P]>
+  }
+
+
+
+
+  export type UserCoachSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserCoachSettingsWhereInput
+    orderBy?: UserCoachSettingsOrderByWithAggregationInput | UserCoachSettingsOrderByWithAggregationInput[]
+    by: UserCoachSettingsScalarFieldEnum[] | UserCoachSettingsScalarFieldEnum
+    having?: UserCoachSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCoachSettingsCountAggregateInputType | true
+    _min?: UserCoachSettingsMinAggregateInputType
+    _max?: UserCoachSettingsMaxAggregateInputType
+  }
+
+  export type UserCoachSettingsGroupByOutputType = {
+    id: string
+    userId: string
+    goalsText: string
+    coachingStyle: string
+    updatedAt: Date
+    _count: UserCoachSettingsCountAggregateOutputType | null
+    _min: UserCoachSettingsMinAggregateOutputType | null
+    _max: UserCoachSettingsMaxAggregateOutputType | null
+  }
+
+  type GetUserCoachSettingsGroupByPayload<T extends UserCoachSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserCoachSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserCoachSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserCoachSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], UserCoachSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserCoachSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    goalsText?: boolean
+    coachingStyle?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userCoachSettings"]>
+
+  export type UserCoachSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    goalsText?: boolean
+    coachingStyle?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userCoachSettings"]>
+
+  export type UserCoachSettingsSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    goalsText?: boolean
+    coachingStyle?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserCoachSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserCoachSettingsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserCoachSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserCoachSettings"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      goalsText: string
+      coachingStyle: string
+      updatedAt: Date
+    }, ExtArgs["result"]["userCoachSettings"]>
+    composites: {}
+  }
+
+  type UserCoachSettingsGetPayload<S extends boolean | null | undefined | UserCoachSettingsDefaultArgs> = $Result.GetResult<Prisma.$UserCoachSettingsPayload, S>
+
+  type UserCoachSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserCoachSettingsFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UserCoachSettingsCountAggregateInputType | true
+    }
+
+  export interface UserCoachSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserCoachSettings'], meta: { name: 'UserCoachSettings' } }
+    /**
+     * Find zero or one UserCoachSettings that matches the filter.
+     * @param {UserCoachSettingsFindUniqueArgs} args - Arguments to find a UserCoachSettings
+     * @example
+     * // Get one UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserCoachSettingsFindUniqueArgs>(args: SelectSubset<T, UserCoachSettingsFindUniqueArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one UserCoachSettings that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {UserCoachSettingsFindUniqueOrThrowArgs} args - Arguments to find a UserCoachSettings
+     * @example
+     * // Get one UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserCoachSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, UserCoachSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first UserCoachSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsFindFirstArgs} args - Arguments to find a UserCoachSettings
+     * @example
+     * // Get one UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserCoachSettingsFindFirstArgs>(args?: SelectSubset<T, UserCoachSettingsFindFirstArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first UserCoachSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsFindFirstOrThrowArgs} args - Arguments to find a UserCoachSettings
+     * @example
+     * // Get one UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserCoachSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, UserCoachSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more UserCoachSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findMany()
+     * 
+     * // Get first 10 UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userCoachSettingsWithIdOnly = await prisma.userCoachSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserCoachSettingsFindManyArgs>(args?: SelectSubset<T, UserCoachSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a UserCoachSettings.
+     * @param {UserCoachSettingsCreateArgs} args - Arguments to create a UserCoachSettings.
+     * @example
+     * // Create one UserCoachSettings
+     * const UserCoachSettings = await prisma.userCoachSettings.create({
+     *   data: {
+     *     // ... data to create a UserCoachSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCoachSettingsCreateArgs>(args: SelectSubset<T, UserCoachSettingsCreateArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many UserCoachSettings.
+     * @param {UserCoachSettingsCreateManyArgs} args - Arguments to create many UserCoachSettings.
+     * @example
+     * // Create many UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCoachSettingsCreateManyArgs>(args?: SelectSubset<T, UserCoachSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserCoachSettings and returns the data saved in the database.
+     * @param {UserCoachSettingsCreateManyAndReturnArgs} args - Arguments to create many UserCoachSettings.
+     * @example
+     * // Create many UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserCoachSettings and only return the `id`
+     * const userCoachSettingsWithIdOnly = await prisma.userCoachSettings.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserCoachSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCoachSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a UserCoachSettings.
+     * @param {UserCoachSettingsDeleteArgs} args - Arguments to delete one UserCoachSettings.
+     * @example
+     * // Delete one UserCoachSettings
+     * const UserCoachSettings = await prisma.userCoachSettings.delete({
+     *   where: {
+     *     // ... filter to delete one UserCoachSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserCoachSettingsDeleteArgs>(args: SelectSubset<T, UserCoachSettingsDeleteArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one UserCoachSettings.
+     * @param {UserCoachSettingsUpdateArgs} args - Arguments to update one UserCoachSettings.
+     * @example
+     * // Update one UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserCoachSettingsUpdateArgs>(args: SelectSubset<T, UserCoachSettingsUpdateArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more UserCoachSettings.
+     * @param {UserCoachSettingsDeleteManyArgs} args - Arguments to filter UserCoachSettings to delete.
+     * @example
+     * // Delete a few UserCoachSettings
+     * const { count } = await prisma.userCoachSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserCoachSettingsDeleteManyArgs>(args?: SelectSubset<T, UserCoachSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserCoachSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserCoachSettingsUpdateManyArgs>(args: SelectSubset<T, UserCoachSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserCoachSettings.
+     * @param {UserCoachSettingsUpsertArgs} args - Arguments to update or create a UserCoachSettings.
+     * @example
+     * // Update or create a UserCoachSettings
+     * const userCoachSettings = await prisma.userCoachSettings.upsert({
+     *   create: {
+     *     // ... data to create a UserCoachSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserCoachSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserCoachSettingsUpsertArgs>(args: SelectSubset<T, UserCoachSettingsUpsertArgs<ExtArgs>>): Prisma__UserCoachSettingsClient<$Result.GetResult<Prisma.$UserCoachSettingsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of UserCoachSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsCountArgs} args - Arguments to filter UserCoachSettings to count.
+     * @example
+     * // Count the number of UserCoachSettings
+     * const count = await prisma.userCoachSettings.count({
+     *   where: {
+     *     // ... the filter for the UserCoachSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCoachSettingsCountArgs>(
+      args?: Subset<T, UserCoachSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCoachSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserCoachSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserCoachSettingsAggregateArgs>(args: Subset<T, UserCoachSettingsAggregateArgs>): Prisma.PrismaPromise<GetUserCoachSettingsAggregateType<T>>
+
+    /**
+     * Group by UserCoachSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCoachSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserCoachSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserCoachSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: UserCoachSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserCoachSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserCoachSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserCoachSettings model
+   */
+  readonly fields: UserCoachSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserCoachSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserCoachSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserCoachSettings model
+   */ 
+  interface UserCoachSettingsFieldRefs {
+    readonly id: FieldRef<"UserCoachSettings", 'String'>
+    readonly userId: FieldRef<"UserCoachSettings", 'String'>
+    readonly goalsText: FieldRef<"UserCoachSettings", 'String'>
+    readonly coachingStyle: FieldRef<"UserCoachSettings", 'String'>
+    readonly updatedAt: FieldRef<"UserCoachSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserCoachSettings findUnique
+   */
+  export type UserCoachSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserCoachSettings to fetch.
+     */
+    where: UserCoachSettingsWhereUniqueInput
+  }
+
+  /**
+   * UserCoachSettings findUniqueOrThrow
+   */
+  export type UserCoachSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserCoachSettings to fetch.
+     */
+    where: UserCoachSettingsWhereUniqueInput
+  }
+
+  /**
+   * UserCoachSettings findFirst
+   */
+  export type UserCoachSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserCoachSettings to fetch.
+     */
+    where?: UserCoachSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserCoachSettings to fetch.
+     */
+    orderBy?: UserCoachSettingsOrderByWithRelationInput | UserCoachSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserCoachSettings.
+     */
+    cursor?: UserCoachSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserCoachSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserCoachSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserCoachSettings.
+     */
+    distinct?: UserCoachSettingsScalarFieldEnum | UserCoachSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * UserCoachSettings findFirstOrThrow
+   */
+  export type UserCoachSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserCoachSettings to fetch.
+     */
+    where?: UserCoachSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserCoachSettings to fetch.
+     */
+    orderBy?: UserCoachSettingsOrderByWithRelationInput | UserCoachSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserCoachSettings.
+     */
+    cursor?: UserCoachSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserCoachSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserCoachSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserCoachSettings.
+     */
+    distinct?: UserCoachSettingsScalarFieldEnum | UserCoachSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * UserCoachSettings findMany
+   */
+  export type UserCoachSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserCoachSettings to fetch.
+     */
+    where?: UserCoachSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserCoachSettings to fetch.
+     */
+    orderBy?: UserCoachSettingsOrderByWithRelationInput | UserCoachSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserCoachSettings.
+     */
+    cursor?: UserCoachSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserCoachSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserCoachSettings.
+     */
+    skip?: number
+    distinct?: UserCoachSettingsScalarFieldEnum | UserCoachSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * UserCoachSettings create
+   */
+  export type UserCoachSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserCoachSettings.
+     */
+    data: XOR<UserCoachSettingsCreateInput, UserCoachSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * UserCoachSettings createMany
+   */
+  export type UserCoachSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserCoachSettings.
+     */
+    data: UserCoachSettingsCreateManyInput | UserCoachSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserCoachSettings createManyAndReturn
+   */
+  export type UserCoachSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many UserCoachSettings.
+     */
+    data: UserCoachSettingsCreateManyInput | UserCoachSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserCoachSettings update
+   */
+  export type UserCoachSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserCoachSettings.
+     */
+    data: XOR<UserCoachSettingsUpdateInput, UserCoachSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which UserCoachSettings to update.
+     */
+    where: UserCoachSettingsWhereUniqueInput
+  }
+
+  /**
+   * UserCoachSettings updateMany
+   */
+  export type UserCoachSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserCoachSettings.
+     */
+    data: XOR<UserCoachSettingsUpdateManyMutationInput, UserCoachSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which UserCoachSettings to update
+     */
+    where?: UserCoachSettingsWhereInput
+  }
+
+  /**
+   * UserCoachSettings upsert
+   */
+  export type UserCoachSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserCoachSettings to update in case it exists.
+     */
+    where: UserCoachSettingsWhereUniqueInput
+    /**
+     * In case the UserCoachSettings found by the `where` argument doesn't exist, create a new UserCoachSettings with this data.
+     */
+    create: XOR<UserCoachSettingsCreateInput, UserCoachSettingsUncheckedCreateInput>
+    /**
+     * In case the UserCoachSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserCoachSettingsUpdateInput, UserCoachSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * UserCoachSettings delete
+   */
+  export type UserCoachSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+    /**
+     * Filter which UserCoachSettings to delete.
+     */
+    where: UserCoachSettingsWhereUniqueInput
+  }
+
+  /**
+   * UserCoachSettings deleteMany
+   */
+  export type UserCoachSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserCoachSettings to delete
+     */
+    where?: UserCoachSettingsWhereInput
+  }
+
+  /**
+   * UserCoachSettings without action
+   */
+  export type UserCoachSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCoachSettings
+     */
+    select?: UserCoachSettingsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserCoachSettingsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CoachingMessage
+   */
+
+  export type AggregateCoachingMessage = {
+    _count: CoachingMessageCountAggregateOutputType | null
+    _min: CoachingMessageMinAggregateOutputType | null
+    _max: CoachingMessageMaxAggregateOutputType | null
+  }
+
+  export type CoachingMessageMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type CoachingMessageMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type CoachingMessageCountAggregateOutputType = {
+    id: number
+    userId: number
+    content: number
+    sessionLifts: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CoachingMessageMinAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type CoachingMessageMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type CoachingMessageCountAggregateInputType = {
+    id?: true
+    userId?: true
+    content?: true
+    sessionLifts?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CoachingMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoachingMessage to aggregate.
+     */
+    where?: CoachingMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoachingMessages to fetch.
+     */
+    orderBy?: CoachingMessageOrderByWithRelationInput | CoachingMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CoachingMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoachingMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoachingMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CoachingMessages
+    **/
+    _count?: true | CoachingMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CoachingMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CoachingMessageMaxAggregateInputType
+  }
+
+  export type GetCoachingMessageAggregateType<T extends CoachingMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateCoachingMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCoachingMessage[P]>
+      : GetScalarType<T[P], AggregateCoachingMessage[P]>
+  }
+
+
+
+
+  export type CoachingMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoachingMessageWhereInput
+    orderBy?: CoachingMessageOrderByWithAggregationInput | CoachingMessageOrderByWithAggregationInput[]
+    by: CoachingMessageScalarFieldEnum[] | CoachingMessageScalarFieldEnum
+    having?: CoachingMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CoachingMessageCountAggregateInputType | true
+    _min?: CoachingMessageMinAggregateInputType
+    _max?: CoachingMessageMaxAggregateInputType
+  }
+
+  export type CoachingMessageGroupByOutputType = {
+    id: string
+    userId: string
+    content: string
+    sessionLifts: JsonValue
+    createdAt: Date
+    _count: CoachingMessageCountAggregateOutputType | null
+    _min: CoachingMessageMinAggregateOutputType | null
+    _max: CoachingMessageMaxAggregateOutputType | null
+  }
+
+  type GetCoachingMessageGroupByPayload<T extends CoachingMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CoachingMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CoachingMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CoachingMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], CoachingMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CoachingMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    sessionLifts?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coachingMessage"]>
+
+  export type CoachingMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    sessionLifts?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coachingMessage"]>
+
+  export type CoachingMessageSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    content?: boolean
+    sessionLifts?: boolean
+    createdAt?: boolean
+  }
+
+  export type CoachingMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CoachingMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CoachingMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CoachingMessage"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      content: string
+      sessionLifts: Prisma.JsonValue
+      createdAt: Date
+    }, ExtArgs["result"]["coachingMessage"]>
+    composites: {}
+  }
+
+  type CoachingMessageGetPayload<S extends boolean | null | undefined | CoachingMessageDefaultArgs> = $Result.GetResult<Prisma.$CoachingMessagePayload, S>
+
+  type CoachingMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CoachingMessageFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CoachingMessageCountAggregateInputType | true
+    }
+
+  export interface CoachingMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CoachingMessage'], meta: { name: 'CoachingMessage' } }
+    /**
+     * Find zero or one CoachingMessage that matches the filter.
+     * @param {CoachingMessageFindUniqueArgs} args - Arguments to find a CoachingMessage
+     * @example
+     * // Get one CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CoachingMessageFindUniqueArgs>(args: SelectSubset<T, CoachingMessageFindUniqueArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one CoachingMessage that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CoachingMessageFindUniqueOrThrowArgs} args - Arguments to find a CoachingMessage
+     * @example
+     * // Get one CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CoachingMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, CoachingMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first CoachingMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageFindFirstArgs} args - Arguments to find a CoachingMessage
+     * @example
+     * // Get one CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CoachingMessageFindFirstArgs>(args?: SelectSubset<T, CoachingMessageFindFirstArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first CoachingMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageFindFirstOrThrowArgs} args - Arguments to find a CoachingMessage
+     * @example
+     * // Get one CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CoachingMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, CoachingMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more CoachingMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CoachingMessages
+     * const coachingMessages = await prisma.coachingMessage.findMany()
+     * 
+     * // Get first 10 CoachingMessages
+     * const coachingMessages = await prisma.coachingMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const coachingMessageWithIdOnly = await prisma.coachingMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CoachingMessageFindManyArgs>(args?: SelectSubset<T, CoachingMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a CoachingMessage.
+     * @param {CoachingMessageCreateArgs} args - Arguments to create a CoachingMessage.
+     * @example
+     * // Create one CoachingMessage
+     * const CoachingMessage = await prisma.coachingMessage.create({
+     *   data: {
+     *     // ... data to create a CoachingMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends CoachingMessageCreateArgs>(args: SelectSubset<T, CoachingMessageCreateArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many CoachingMessages.
+     * @param {CoachingMessageCreateManyArgs} args - Arguments to create many CoachingMessages.
+     * @example
+     * // Create many CoachingMessages
+     * const coachingMessage = await prisma.coachingMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CoachingMessageCreateManyArgs>(args?: SelectSubset<T, CoachingMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CoachingMessages and returns the data saved in the database.
+     * @param {CoachingMessageCreateManyAndReturnArgs} args - Arguments to create many CoachingMessages.
+     * @example
+     * // Create many CoachingMessages
+     * const coachingMessage = await prisma.coachingMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CoachingMessages and only return the `id`
+     * const coachingMessageWithIdOnly = await prisma.coachingMessage.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CoachingMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, CoachingMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a CoachingMessage.
+     * @param {CoachingMessageDeleteArgs} args - Arguments to delete one CoachingMessage.
+     * @example
+     * // Delete one CoachingMessage
+     * const CoachingMessage = await prisma.coachingMessage.delete({
+     *   where: {
+     *     // ... filter to delete one CoachingMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CoachingMessageDeleteArgs>(args: SelectSubset<T, CoachingMessageDeleteArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one CoachingMessage.
+     * @param {CoachingMessageUpdateArgs} args - Arguments to update one CoachingMessage.
+     * @example
+     * // Update one CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CoachingMessageUpdateArgs>(args: SelectSubset<T, CoachingMessageUpdateArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more CoachingMessages.
+     * @param {CoachingMessageDeleteManyArgs} args - Arguments to filter CoachingMessages to delete.
+     * @example
+     * // Delete a few CoachingMessages
+     * const { count } = await prisma.coachingMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CoachingMessageDeleteManyArgs>(args?: SelectSubset<T, CoachingMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CoachingMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CoachingMessages
+     * const coachingMessage = await prisma.coachingMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CoachingMessageUpdateManyArgs>(args: SelectSubset<T, CoachingMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CoachingMessage.
+     * @param {CoachingMessageUpsertArgs} args - Arguments to update or create a CoachingMessage.
+     * @example
+     * // Update or create a CoachingMessage
+     * const coachingMessage = await prisma.coachingMessage.upsert({
+     *   create: {
+     *     // ... data to create a CoachingMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CoachingMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CoachingMessageUpsertArgs>(args: SelectSubset<T, CoachingMessageUpsertArgs<ExtArgs>>): Prisma__CoachingMessageClient<$Result.GetResult<Prisma.$CoachingMessagePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of CoachingMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageCountArgs} args - Arguments to filter CoachingMessages to count.
+     * @example
+     * // Count the number of CoachingMessages
+     * const count = await prisma.coachingMessage.count({
+     *   where: {
+     *     // ... the filter for the CoachingMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends CoachingMessageCountArgs>(
+      args?: Subset<T, CoachingMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CoachingMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CoachingMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CoachingMessageAggregateArgs>(args: Subset<T, CoachingMessageAggregateArgs>): Prisma.PrismaPromise<GetCoachingMessageAggregateType<T>>
+
+    /**
+     * Group by CoachingMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoachingMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CoachingMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CoachingMessageGroupByArgs['orderBy'] }
+        : { orderBy?: CoachingMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CoachingMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCoachingMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CoachingMessage model
+   */
+  readonly fields: CoachingMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CoachingMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CoachingMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CoachingMessage model
+   */ 
+  interface CoachingMessageFieldRefs {
+    readonly id: FieldRef<"CoachingMessage", 'String'>
+    readonly userId: FieldRef<"CoachingMessage", 'String'>
+    readonly content: FieldRef<"CoachingMessage", 'String'>
+    readonly sessionLifts: FieldRef<"CoachingMessage", 'Json'>
+    readonly createdAt: FieldRef<"CoachingMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CoachingMessage findUnique
+   */
+  export type CoachingMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which CoachingMessage to fetch.
+     */
+    where: CoachingMessageWhereUniqueInput
+  }
+
+  /**
+   * CoachingMessage findUniqueOrThrow
+   */
+  export type CoachingMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which CoachingMessage to fetch.
+     */
+    where: CoachingMessageWhereUniqueInput
+  }
+
+  /**
+   * CoachingMessage findFirst
+   */
+  export type CoachingMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which CoachingMessage to fetch.
+     */
+    where?: CoachingMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoachingMessages to fetch.
+     */
+    orderBy?: CoachingMessageOrderByWithRelationInput | CoachingMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoachingMessages.
+     */
+    cursor?: CoachingMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoachingMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoachingMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoachingMessages.
+     */
+    distinct?: CoachingMessageScalarFieldEnum | CoachingMessageScalarFieldEnum[]
+  }
+
+  /**
+   * CoachingMessage findFirstOrThrow
+   */
+  export type CoachingMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which CoachingMessage to fetch.
+     */
+    where?: CoachingMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoachingMessages to fetch.
+     */
+    orderBy?: CoachingMessageOrderByWithRelationInput | CoachingMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CoachingMessages.
+     */
+    cursor?: CoachingMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoachingMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoachingMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CoachingMessages.
+     */
+    distinct?: CoachingMessageScalarFieldEnum | CoachingMessageScalarFieldEnum[]
+  }
+
+  /**
+   * CoachingMessage findMany
+   */
+  export type CoachingMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which CoachingMessages to fetch.
+     */
+    where?: CoachingMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CoachingMessages to fetch.
+     */
+    orderBy?: CoachingMessageOrderByWithRelationInput | CoachingMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CoachingMessages.
+     */
+    cursor?: CoachingMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CoachingMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CoachingMessages.
+     */
+    skip?: number
+    distinct?: CoachingMessageScalarFieldEnum | CoachingMessageScalarFieldEnum[]
+  }
+
+  /**
+   * CoachingMessage create
+   */
+  export type CoachingMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CoachingMessage.
+     */
+    data: XOR<CoachingMessageCreateInput, CoachingMessageUncheckedCreateInput>
+  }
+
+  /**
+   * CoachingMessage createMany
+   */
+  export type CoachingMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CoachingMessages.
+     */
+    data: CoachingMessageCreateManyInput | CoachingMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CoachingMessage createManyAndReturn
+   */
+  export type CoachingMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many CoachingMessages.
+     */
+    data: CoachingMessageCreateManyInput | CoachingMessageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CoachingMessage update
+   */
+  export type CoachingMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CoachingMessage.
+     */
+    data: XOR<CoachingMessageUpdateInput, CoachingMessageUncheckedUpdateInput>
+    /**
+     * Choose, which CoachingMessage to update.
+     */
+    where: CoachingMessageWhereUniqueInput
+  }
+
+  /**
+   * CoachingMessage updateMany
+   */
+  export type CoachingMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CoachingMessages.
+     */
+    data: XOR<CoachingMessageUpdateManyMutationInput, CoachingMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which CoachingMessages to update
+     */
+    where?: CoachingMessageWhereInput
+  }
+
+  /**
+   * CoachingMessage upsert
+   */
+  export type CoachingMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CoachingMessage to update in case it exists.
+     */
+    where: CoachingMessageWhereUniqueInput
+    /**
+     * In case the CoachingMessage found by the `where` argument doesn't exist, create a new CoachingMessage with this data.
+     */
+    create: XOR<CoachingMessageCreateInput, CoachingMessageUncheckedCreateInput>
+    /**
+     * In case the CoachingMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CoachingMessageUpdateInput, CoachingMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * CoachingMessage delete
+   */
+  export type CoachingMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+    /**
+     * Filter which CoachingMessage to delete.
+     */
+    where: CoachingMessageWhereUniqueInput
+  }
+
+  /**
+   * CoachingMessage deleteMany
+   */
+  export type CoachingMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CoachingMessages to delete
+     */
+    where?: CoachingMessageWhereInput
+  }
+
+  /**
+   * CoachingMessage without action
+   */
+  export type CoachingMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoachingMessage
+     */
+    select?: CoachingMessageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoachingMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PendingCoaching
+   */
+
+  export type AggregatePendingCoaching = {
+    _count: PendingCoachingCountAggregateOutputType | null
+    _min: PendingCoachingMinAggregateOutputType | null
+    _max: PendingCoachingMaxAggregateOutputType | null
+  }
+
+  export type PendingCoachingMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    scheduledAt: Date | null
+    sessionStart: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PendingCoachingMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    scheduledAt: Date | null
+    sessionStart: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PendingCoachingCountAggregateOutputType = {
+    id: number
+    userId: number
+    scheduledAt: number
+    sessionStart: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PendingCoachingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    scheduledAt?: true
+    sessionStart?: true
+    updatedAt?: true
+  }
+
+  export type PendingCoachingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    scheduledAt?: true
+    sessionStart?: true
+    updatedAt?: true
+  }
+
+  export type PendingCoachingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    scheduledAt?: true
+    sessionStart?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PendingCoachingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PendingCoaching to aggregate.
+     */
+    where?: PendingCoachingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingCoachings to fetch.
+     */
+    orderBy?: PendingCoachingOrderByWithRelationInput | PendingCoachingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PendingCoachingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingCoachings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingCoachings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PendingCoachings
+    **/
+    _count?: true | PendingCoachingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PendingCoachingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PendingCoachingMaxAggregateInputType
+  }
+
+  export type GetPendingCoachingAggregateType<T extends PendingCoachingAggregateArgs> = {
+        [P in keyof T & keyof AggregatePendingCoaching]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePendingCoaching[P]>
+      : GetScalarType<T[P], AggregatePendingCoaching[P]>
+  }
+
+
+
+
+  export type PendingCoachingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PendingCoachingWhereInput
+    orderBy?: PendingCoachingOrderByWithAggregationInput | PendingCoachingOrderByWithAggregationInput[]
+    by: PendingCoachingScalarFieldEnum[] | PendingCoachingScalarFieldEnum
+    having?: PendingCoachingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PendingCoachingCountAggregateInputType | true
+    _min?: PendingCoachingMinAggregateInputType
+    _max?: PendingCoachingMaxAggregateInputType
+  }
+
+  export type PendingCoachingGroupByOutputType = {
+    id: string
+    userId: string
+    scheduledAt: Date
+    sessionStart: Date
+    updatedAt: Date
+    _count: PendingCoachingCountAggregateOutputType | null
+    _min: PendingCoachingMinAggregateOutputType | null
+    _max: PendingCoachingMaxAggregateOutputType | null
+  }
+
+  type GetPendingCoachingGroupByPayload<T extends PendingCoachingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PendingCoachingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PendingCoachingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PendingCoachingGroupByOutputType[P]>
+            : GetScalarType<T[P], PendingCoachingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PendingCoachingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    scheduledAt?: boolean
+    sessionStart?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingCoaching"]>
+
+  export type PendingCoachingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    scheduledAt?: boolean
+    sessionStart?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingCoaching"]>
+
+  export type PendingCoachingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    scheduledAt?: boolean
+    sessionStart?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PendingCoachingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PendingCoachingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PendingCoachingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PendingCoaching"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      scheduledAt: Date
+      sessionStart: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["pendingCoaching"]>
+    composites: {}
+  }
+
+  type PendingCoachingGetPayload<S extends boolean | null | undefined | PendingCoachingDefaultArgs> = $Result.GetResult<Prisma.$PendingCoachingPayload, S>
+
+  type PendingCoachingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PendingCoachingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PendingCoachingCountAggregateInputType | true
+    }
+
+  export interface PendingCoachingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PendingCoaching'], meta: { name: 'PendingCoaching' } }
+    /**
+     * Find zero or one PendingCoaching that matches the filter.
+     * @param {PendingCoachingFindUniqueArgs} args - Arguments to find a PendingCoaching
+     * @example
+     * // Get one PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PendingCoachingFindUniqueArgs>(args: SelectSubset<T, PendingCoachingFindUniqueArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one PendingCoaching that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PendingCoachingFindUniqueOrThrowArgs} args - Arguments to find a PendingCoaching
+     * @example
+     * // Get one PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PendingCoachingFindUniqueOrThrowArgs>(args: SelectSubset<T, PendingCoachingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first PendingCoaching that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingFindFirstArgs} args - Arguments to find a PendingCoaching
+     * @example
+     * // Get one PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PendingCoachingFindFirstArgs>(args?: SelectSubset<T, PendingCoachingFindFirstArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first PendingCoaching that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingFindFirstOrThrowArgs} args - Arguments to find a PendingCoaching
+     * @example
+     * // Get one PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PendingCoachingFindFirstOrThrowArgs>(args?: SelectSubset<T, PendingCoachingFindFirstOrThrowArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more PendingCoachings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PendingCoachings
+     * const pendingCoachings = await prisma.pendingCoaching.findMany()
+     * 
+     * // Get first 10 PendingCoachings
+     * const pendingCoachings = await prisma.pendingCoaching.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pendingCoachingWithIdOnly = await prisma.pendingCoaching.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PendingCoachingFindManyArgs>(args?: SelectSubset<T, PendingCoachingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a PendingCoaching.
+     * @param {PendingCoachingCreateArgs} args - Arguments to create a PendingCoaching.
+     * @example
+     * // Create one PendingCoaching
+     * const PendingCoaching = await prisma.pendingCoaching.create({
+     *   data: {
+     *     // ... data to create a PendingCoaching
+     *   }
+     * })
+     * 
+     */
+    create<T extends PendingCoachingCreateArgs>(args: SelectSubset<T, PendingCoachingCreateArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many PendingCoachings.
+     * @param {PendingCoachingCreateManyArgs} args - Arguments to create many PendingCoachings.
+     * @example
+     * // Create many PendingCoachings
+     * const pendingCoaching = await prisma.pendingCoaching.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PendingCoachingCreateManyArgs>(args?: SelectSubset<T, PendingCoachingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PendingCoachings and returns the data saved in the database.
+     * @param {PendingCoachingCreateManyAndReturnArgs} args - Arguments to create many PendingCoachings.
+     * @example
+     * // Create many PendingCoachings
+     * const pendingCoaching = await prisma.pendingCoaching.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PendingCoachings and only return the `id`
+     * const pendingCoachingWithIdOnly = await prisma.pendingCoaching.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PendingCoachingCreateManyAndReturnArgs>(args?: SelectSubset<T, PendingCoachingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a PendingCoaching.
+     * @param {PendingCoachingDeleteArgs} args - Arguments to delete one PendingCoaching.
+     * @example
+     * // Delete one PendingCoaching
+     * const PendingCoaching = await prisma.pendingCoaching.delete({
+     *   where: {
+     *     // ... filter to delete one PendingCoaching
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PendingCoachingDeleteArgs>(args: SelectSubset<T, PendingCoachingDeleteArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one PendingCoaching.
+     * @param {PendingCoachingUpdateArgs} args - Arguments to update one PendingCoaching.
+     * @example
+     * // Update one PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PendingCoachingUpdateArgs>(args: SelectSubset<T, PendingCoachingUpdateArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more PendingCoachings.
+     * @param {PendingCoachingDeleteManyArgs} args - Arguments to filter PendingCoachings to delete.
+     * @example
+     * // Delete a few PendingCoachings
+     * const { count } = await prisma.pendingCoaching.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PendingCoachingDeleteManyArgs>(args?: SelectSubset<T, PendingCoachingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PendingCoachings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PendingCoachings
+     * const pendingCoaching = await prisma.pendingCoaching.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PendingCoachingUpdateManyArgs>(args: SelectSubset<T, PendingCoachingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PendingCoaching.
+     * @param {PendingCoachingUpsertArgs} args - Arguments to update or create a PendingCoaching.
+     * @example
+     * // Update or create a PendingCoaching
+     * const pendingCoaching = await prisma.pendingCoaching.upsert({
+     *   create: {
+     *     // ... data to create a PendingCoaching
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PendingCoaching we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PendingCoachingUpsertArgs>(args: SelectSubset<T, PendingCoachingUpsertArgs<ExtArgs>>): Prisma__PendingCoachingClient<$Result.GetResult<Prisma.$PendingCoachingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of PendingCoachings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingCountArgs} args - Arguments to filter PendingCoachings to count.
+     * @example
+     * // Count the number of PendingCoachings
+     * const count = await prisma.pendingCoaching.count({
+     *   where: {
+     *     // ... the filter for the PendingCoachings we want to count
+     *   }
+     * })
+    **/
+    count<T extends PendingCoachingCountArgs>(
+      args?: Subset<T, PendingCoachingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PendingCoachingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PendingCoaching.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PendingCoachingAggregateArgs>(args: Subset<T, PendingCoachingAggregateArgs>): Prisma.PrismaPromise<GetPendingCoachingAggregateType<T>>
+
+    /**
+     * Group by PendingCoaching.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PendingCoachingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PendingCoachingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PendingCoachingGroupByArgs['orderBy'] }
+        : { orderBy?: PendingCoachingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PendingCoachingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPendingCoachingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PendingCoaching model
+   */
+  readonly fields: PendingCoachingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PendingCoaching.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PendingCoachingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PendingCoaching model
+   */ 
+  interface PendingCoachingFieldRefs {
+    readonly id: FieldRef<"PendingCoaching", 'String'>
+    readonly userId: FieldRef<"PendingCoaching", 'String'>
+    readonly scheduledAt: FieldRef<"PendingCoaching", 'DateTime'>
+    readonly sessionStart: FieldRef<"PendingCoaching", 'DateTime'>
+    readonly updatedAt: FieldRef<"PendingCoaching", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PendingCoaching findUnique
+   */
+  export type PendingCoachingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingCoaching to fetch.
+     */
+    where: PendingCoachingWhereUniqueInput
+  }
+
+  /**
+   * PendingCoaching findUniqueOrThrow
+   */
+  export type PendingCoachingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingCoaching to fetch.
+     */
+    where: PendingCoachingWhereUniqueInput
+  }
+
+  /**
+   * PendingCoaching findFirst
+   */
+  export type PendingCoachingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingCoaching to fetch.
+     */
+    where?: PendingCoachingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingCoachings to fetch.
+     */
+    orderBy?: PendingCoachingOrderByWithRelationInput | PendingCoachingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PendingCoachings.
+     */
+    cursor?: PendingCoachingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingCoachings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingCoachings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PendingCoachings.
+     */
+    distinct?: PendingCoachingScalarFieldEnum | PendingCoachingScalarFieldEnum[]
+  }
+
+  /**
+   * PendingCoaching findFirstOrThrow
+   */
+  export type PendingCoachingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingCoaching to fetch.
+     */
+    where?: PendingCoachingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingCoachings to fetch.
+     */
+    orderBy?: PendingCoachingOrderByWithRelationInput | PendingCoachingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PendingCoachings.
+     */
+    cursor?: PendingCoachingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingCoachings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingCoachings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PendingCoachings.
+     */
+    distinct?: PendingCoachingScalarFieldEnum | PendingCoachingScalarFieldEnum[]
+  }
+
+  /**
+   * PendingCoaching findMany
+   */
+  export type PendingCoachingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter, which PendingCoachings to fetch.
+     */
+    where?: PendingCoachingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PendingCoachings to fetch.
+     */
+    orderBy?: PendingCoachingOrderByWithRelationInput | PendingCoachingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PendingCoachings.
+     */
+    cursor?: PendingCoachingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PendingCoachings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PendingCoachings.
+     */
+    skip?: number
+    distinct?: PendingCoachingScalarFieldEnum | PendingCoachingScalarFieldEnum[]
+  }
+
+  /**
+   * PendingCoaching create
+   */
+  export type PendingCoachingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PendingCoaching.
+     */
+    data: XOR<PendingCoachingCreateInput, PendingCoachingUncheckedCreateInput>
+  }
+
+  /**
+   * PendingCoaching createMany
+   */
+  export type PendingCoachingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PendingCoachings.
+     */
+    data: PendingCoachingCreateManyInput | PendingCoachingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PendingCoaching createManyAndReturn
+   */
+  export type PendingCoachingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many PendingCoachings.
+     */
+    data: PendingCoachingCreateManyInput | PendingCoachingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PendingCoaching update
+   */
+  export type PendingCoachingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PendingCoaching.
+     */
+    data: XOR<PendingCoachingUpdateInput, PendingCoachingUncheckedUpdateInput>
+    /**
+     * Choose, which PendingCoaching to update.
+     */
+    where: PendingCoachingWhereUniqueInput
+  }
+
+  /**
+   * PendingCoaching updateMany
+   */
+  export type PendingCoachingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PendingCoachings.
+     */
+    data: XOR<PendingCoachingUpdateManyMutationInput, PendingCoachingUncheckedUpdateManyInput>
+    /**
+     * Filter which PendingCoachings to update
+     */
+    where?: PendingCoachingWhereInput
+  }
+
+  /**
+   * PendingCoaching upsert
+   */
+  export type PendingCoachingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PendingCoaching to update in case it exists.
+     */
+    where: PendingCoachingWhereUniqueInput
+    /**
+     * In case the PendingCoaching found by the `where` argument doesn't exist, create a new PendingCoaching with this data.
+     */
+    create: XOR<PendingCoachingCreateInput, PendingCoachingUncheckedCreateInput>
+    /**
+     * In case the PendingCoaching was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PendingCoachingUpdateInput, PendingCoachingUncheckedUpdateInput>
+  }
+
+  /**
+   * PendingCoaching delete
+   */
+  export type PendingCoachingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+    /**
+     * Filter which PendingCoaching to delete.
+     */
+    where: PendingCoachingWhereUniqueInput
+  }
+
+  /**
+   * PendingCoaching deleteMany
+   */
+  export type PendingCoachingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PendingCoachings to delete
+     */
+    where?: PendingCoachingWhereInput
+  }
+
+  /**
+   * PendingCoaching without action
+   */
+  export type PendingCoachingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PendingCoaching
+     */
+    select?: PendingCoachingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PendingCoachingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model PendingNotification
    */
 
@@ -9316,6 +12440,39 @@ export namespace Prisma {
   export type PushSubscriptionScalarFieldEnum = (typeof PushSubscriptionScalarFieldEnum)[keyof typeof PushSubscriptionScalarFieldEnum]
 
 
+  export const UserCoachSettingsScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    goalsText: 'goalsText',
+    coachingStyle: 'coachingStyle',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserCoachSettingsScalarFieldEnum = (typeof UserCoachSettingsScalarFieldEnum)[keyof typeof UserCoachSettingsScalarFieldEnum]
+
+
+  export const CoachingMessageScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    content: 'content',
+    sessionLifts: 'sessionLifts',
+    createdAt: 'createdAt'
+  };
+
+  export type CoachingMessageScalarFieldEnum = (typeof CoachingMessageScalarFieldEnum)[keyof typeof CoachingMessageScalarFieldEnum]
+
+
+  export const PendingCoachingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    scheduledAt: 'scheduledAt',
+    sessionStart: 'sessionStart',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PendingCoachingScalarFieldEnum = (typeof PendingCoachingScalarFieldEnum)[keyof typeof PendingCoachingScalarFieldEnum]
+
+
   export const PendingNotificationScalarFieldEnum: {
     id: 'id',
     liftOwnerId: 'liftOwnerId',
@@ -9339,6 +12496,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -9353,6 +12517,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -9417,6 +12590,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -9440,6 +12620,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionListRelationFilter
     ownedPendingNotifications?: PendingNotificationListRelationFilter
     actorPendingNotifications?: PendingNotificationListRelationFilter
+    coachSettings?: XOR<UserCoachSettingsNullableRelationFilter, UserCoachSettingsWhereInput> | null
+    coachingMessages?: CoachingMessageListRelationFilter
+    pendingCoaching?: XOR<PendingCoachingNullableRelationFilter, PendingCoachingWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9453,6 +12636,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionOrderByRelationAggregateInput
     ownedPendingNotifications?: PendingNotificationOrderByRelationAggregateInput
     actorPendingNotifications?: PendingNotificationOrderByRelationAggregateInput
+    coachSettings?: UserCoachSettingsOrderByWithRelationInput
+    coachingMessages?: CoachingMessageOrderByRelationAggregateInput
+    pendingCoaching?: PendingCoachingOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9469,6 +12655,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionListRelationFilter
     ownedPendingNotifications?: PendingNotificationListRelationFilter
     actorPendingNotifications?: PendingNotificationListRelationFilter
+    coachSettings?: XOR<UserCoachSettingsNullableRelationFilter, UserCoachSettingsWhereInput> | null
+    coachingMessages?: CoachingMessageListRelationFilter
+    pendingCoaching?: XOR<PendingCoachingNullableRelationFilter, PendingCoachingWhereInput> | null
   }, "id" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -9833,6 +13022,171 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PushSubscription"> | Date | string
   }
 
+  export type UserCoachSettingsWhereInput = {
+    AND?: UserCoachSettingsWhereInput | UserCoachSettingsWhereInput[]
+    OR?: UserCoachSettingsWhereInput[]
+    NOT?: UserCoachSettingsWhereInput | UserCoachSettingsWhereInput[]
+    id?: StringFilter<"UserCoachSettings"> | string
+    userId?: StringFilter<"UserCoachSettings"> | string
+    goalsText?: StringFilter<"UserCoachSettings"> | string
+    coachingStyle?: StringFilter<"UserCoachSettings"> | string
+    updatedAt?: DateTimeFilter<"UserCoachSettings"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type UserCoachSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    goalsText?: SortOrder
+    coachingStyle?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserCoachSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserCoachSettingsWhereInput | UserCoachSettingsWhereInput[]
+    OR?: UserCoachSettingsWhereInput[]
+    NOT?: UserCoachSettingsWhereInput | UserCoachSettingsWhereInput[]
+    goalsText?: StringFilter<"UserCoachSettings"> | string
+    coachingStyle?: StringFilter<"UserCoachSettings"> | string
+    updatedAt?: DateTimeFilter<"UserCoachSettings"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserCoachSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    goalsText?: SortOrder
+    coachingStyle?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCoachSettingsCountOrderByAggregateInput
+    _max?: UserCoachSettingsMaxOrderByAggregateInput
+    _min?: UserCoachSettingsMinOrderByAggregateInput
+  }
+
+  export type UserCoachSettingsScalarWhereWithAggregatesInput = {
+    AND?: UserCoachSettingsScalarWhereWithAggregatesInput | UserCoachSettingsScalarWhereWithAggregatesInput[]
+    OR?: UserCoachSettingsScalarWhereWithAggregatesInput[]
+    NOT?: UserCoachSettingsScalarWhereWithAggregatesInput | UserCoachSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserCoachSettings"> | string
+    userId?: StringWithAggregatesFilter<"UserCoachSettings"> | string
+    goalsText?: StringWithAggregatesFilter<"UserCoachSettings"> | string
+    coachingStyle?: StringWithAggregatesFilter<"UserCoachSettings"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserCoachSettings"> | Date | string
+  }
+
+  export type CoachingMessageWhereInput = {
+    AND?: CoachingMessageWhereInput | CoachingMessageWhereInput[]
+    OR?: CoachingMessageWhereInput[]
+    NOT?: CoachingMessageWhereInput | CoachingMessageWhereInput[]
+    id?: StringFilter<"CoachingMessage"> | string
+    userId?: StringFilter<"CoachingMessage"> | string
+    content?: StringFilter<"CoachingMessage"> | string
+    sessionLifts?: JsonFilter<"CoachingMessage">
+    createdAt?: DateTimeFilter<"CoachingMessage"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type CoachingMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    sessionLifts?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type CoachingMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CoachingMessageWhereInput | CoachingMessageWhereInput[]
+    OR?: CoachingMessageWhereInput[]
+    NOT?: CoachingMessageWhereInput | CoachingMessageWhereInput[]
+    userId?: StringFilter<"CoachingMessage"> | string
+    content?: StringFilter<"CoachingMessage"> | string
+    sessionLifts?: JsonFilter<"CoachingMessage">
+    createdAt?: DateTimeFilter<"CoachingMessage"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type CoachingMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    sessionLifts?: SortOrder
+    createdAt?: SortOrder
+    _count?: CoachingMessageCountOrderByAggregateInput
+    _max?: CoachingMessageMaxOrderByAggregateInput
+    _min?: CoachingMessageMinOrderByAggregateInput
+  }
+
+  export type CoachingMessageScalarWhereWithAggregatesInput = {
+    AND?: CoachingMessageScalarWhereWithAggregatesInput | CoachingMessageScalarWhereWithAggregatesInput[]
+    OR?: CoachingMessageScalarWhereWithAggregatesInput[]
+    NOT?: CoachingMessageScalarWhereWithAggregatesInput | CoachingMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CoachingMessage"> | string
+    userId?: StringWithAggregatesFilter<"CoachingMessage"> | string
+    content?: StringWithAggregatesFilter<"CoachingMessage"> | string
+    sessionLifts?: JsonWithAggregatesFilter<"CoachingMessage">
+    createdAt?: DateTimeWithAggregatesFilter<"CoachingMessage"> | Date | string
+  }
+
+  export type PendingCoachingWhereInput = {
+    AND?: PendingCoachingWhereInput | PendingCoachingWhereInput[]
+    OR?: PendingCoachingWhereInput[]
+    NOT?: PendingCoachingWhereInput | PendingCoachingWhereInput[]
+    id?: StringFilter<"PendingCoaching"> | string
+    userId?: StringFilter<"PendingCoaching"> | string
+    scheduledAt?: DateTimeFilter<"PendingCoaching"> | Date | string
+    sessionStart?: DateTimeFilter<"PendingCoaching"> | Date | string
+    updatedAt?: DateTimeFilter<"PendingCoaching"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type PendingCoachingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scheduledAt?: SortOrder
+    sessionStart?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PendingCoachingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: PendingCoachingWhereInput | PendingCoachingWhereInput[]
+    OR?: PendingCoachingWhereInput[]
+    NOT?: PendingCoachingWhereInput | PendingCoachingWhereInput[]
+    scheduledAt?: DateTimeFilter<"PendingCoaching"> | Date | string
+    sessionStart?: DateTimeFilter<"PendingCoaching"> | Date | string
+    updatedAt?: DateTimeFilter<"PendingCoaching"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type PendingCoachingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scheduledAt?: SortOrder
+    sessionStart?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PendingCoachingCountOrderByAggregateInput
+    _max?: PendingCoachingMaxOrderByAggregateInput
+    _min?: PendingCoachingMinOrderByAggregateInput
+  }
+
+  export type PendingCoachingScalarWhereWithAggregatesInput = {
+    AND?: PendingCoachingScalarWhereWithAggregatesInput | PendingCoachingScalarWhereWithAggregatesInput[]
+    OR?: PendingCoachingScalarWhereWithAggregatesInput[]
+    NOT?: PendingCoachingScalarWhereWithAggregatesInput | PendingCoachingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PendingCoaching"> | string
+    userId?: StringWithAggregatesFilter<"PendingCoaching"> | string
+    scheduledAt?: DateTimeWithAggregatesFilter<"PendingCoaching"> | Date | string
+    sessionStart?: DateTimeWithAggregatesFilter<"PendingCoaching"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PendingCoaching"> | Date | string
+  }
+
   export type PendingNotificationWhereInput = {
     AND?: PendingNotificationWhereInput | PendingNotificationWhereInput[]
     OR?: PendingNotificationWhereInput[]
@@ -9925,6 +13279,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9938,6 +13295,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -9951,6 +13311,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9964,6 +13327,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -10329,6 +13695,171 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserCoachSettingsCreateInput = {
+    id?: string
+    goalsText?: string
+    coachingStyle?: string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCoachSettingsInput
+  }
+
+  export type UserCoachSettingsUncheckedCreateInput = {
+    id?: string
+    userId: string
+    goalsText?: string
+    coachingStyle?: string
+    updatedAt?: Date | string
+  }
+
+  export type UserCoachSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCoachSettingsNestedInput
+  }
+
+  export type UserCoachSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCoachSettingsCreateManyInput = {
+    id?: string
+    userId: string
+    goalsText?: string
+    coachingStyle?: string
+    updatedAt?: Date | string
+  }
+
+  export type UserCoachSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCoachSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageCreateInput = {
+    id?: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCoachingMessagesInput
+  }
+
+  export type CoachingMessageUncheckedCreateInput = {
+    id?: string
+    userId: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type CoachingMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCoachingMessagesNestedInput
+  }
+
+  export type CoachingMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageCreateManyInput = {
+    id?: string
+    userId: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type CoachingMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingCoachingCreateInput = {
+    id?: string
+    scheduledAt: Date | string
+    sessionStart: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutPendingCoachingInput
+  }
+
+  export type PendingCoachingUncheckedCreateInput = {
+    id?: string
+    userId: string
+    scheduledAt: Date | string
+    sessionStart: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PendingCoachingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPendingCoachingNestedInput
+  }
+
+  export type PendingCoachingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingCoachingCreateManyInput = {
+    id?: string
+    userId: string
+    scheduledAt: Date | string
+    sessionStart: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PendingCoachingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingCoachingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PendingNotificationCreateInput = {
     id?: string
     comments?: PendingNotificationCreatecommentsInput | string[]
@@ -10466,6 +13997,22 @@ export namespace Prisma {
     none?: PendingNotificationWhereInput
   }
 
+  export type UserCoachSettingsNullableRelationFilter = {
+    is?: UserCoachSettingsWhereInput | null
+    isNot?: UserCoachSettingsWhereInput | null
+  }
+
+  export type CoachingMessageListRelationFilter = {
+    every?: CoachingMessageWhereInput
+    some?: CoachingMessageWhereInput
+    none?: CoachingMessageWhereInput
+  }
+
+  export type PendingCoachingNullableRelationFilter = {
+    is?: PendingCoachingWhereInput | null
+    isNot?: PendingCoachingWhereInput | null
+  }
+
   export type LiftOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -10483,6 +14030,10 @@ export namespace Prisma {
   }
 
   export type PendingNotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CoachingMessageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10828,6 +14379,123 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type UserCoachSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    goalsText?: SortOrder
+    coachingStyle?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserCoachSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    goalsText?: SortOrder
+    coachingStyle?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserCoachSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    goalsText?: SortOrder
+    coachingStyle?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type CoachingMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    sessionLifts?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CoachingMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CoachingMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type PendingCoachingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scheduledAt?: SortOrder
+    sessionStart?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PendingCoachingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scheduledAt?: SortOrder
+    sessionStart?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PendingCoachingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    scheduledAt?: SortOrder
+    sessionStart?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -10923,6 +14591,25 @@ export namespace Prisma {
     connect?: PendingNotificationWhereUniqueInput | PendingNotificationWhereUniqueInput[]
   }
 
+  export type UserCoachSettingsCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserCoachSettingsCreateOrConnectWithoutUserInput
+    connect?: UserCoachSettingsWhereUniqueInput
+  }
+
+  export type CoachingMessageCreateNestedManyWithoutUserInput = {
+    create?: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput> | CoachingMessageCreateWithoutUserInput[] | CoachingMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CoachingMessageCreateOrConnectWithoutUserInput | CoachingMessageCreateOrConnectWithoutUserInput[]
+    createMany?: CoachingMessageCreateManyUserInputEnvelope
+    connect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+  }
+
+  export type PendingCoachingCreateNestedOneWithoutUserInput = {
+    create?: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PendingCoachingCreateOrConnectWithoutUserInput
+    connect?: PendingCoachingWhereUniqueInput
+  }
+
   export type LiftUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<LiftCreateWithoutUserInput, LiftUncheckedCreateWithoutUserInput> | LiftCreateWithoutUserInput[] | LiftUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LiftCreateOrConnectWithoutUserInput | LiftCreateOrConnectWithoutUserInput[]
@@ -10963,6 +14650,25 @@ export namespace Prisma {
     connectOrCreate?: PendingNotificationCreateOrConnectWithoutActorInput | PendingNotificationCreateOrConnectWithoutActorInput[]
     createMany?: PendingNotificationCreateManyActorInputEnvelope
     connect?: PendingNotificationWhereUniqueInput | PendingNotificationWhereUniqueInput[]
+  }
+
+  export type UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserCoachSettingsCreateOrConnectWithoutUserInput
+    connect?: UserCoachSettingsWhereUniqueInput
+  }
+
+  export type CoachingMessageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput> | CoachingMessageCreateWithoutUserInput[] | CoachingMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CoachingMessageCreateOrConnectWithoutUserInput | CoachingMessageCreateOrConnectWithoutUserInput[]
+    createMany?: CoachingMessageCreateManyUserInputEnvelope
+    connect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+  }
+
+  export type PendingCoachingUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PendingCoachingCreateOrConnectWithoutUserInput
+    connect?: PendingCoachingWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11057,6 +14763,40 @@ export namespace Prisma {
     deleteMany?: PendingNotificationScalarWhereInput | PendingNotificationScalarWhereInput[]
   }
 
+  export type UserCoachSettingsUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserCoachSettingsCreateOrConnectWithoutUserInput
+    upsert?: UserCoachSettingsUpsertWithoutUserInput
+    disconnect?: UserCoachSettingsWhereInput | boolean
+    delete?: UserCoachSettingsWhereInput | boolean
+    connect?: UserCoachSettingsWhereUniqueInput
+    update?: XOR<XOR<UserCoachSettingsUpdateToOneWithWhereWithoutUserInput, UserCoachSettingsUpdateWithoutUserInput>, UserCoachSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CoachingMessageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput> | CoachingMessageCreateWithoutUserInput[] | CoachingMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CoachingMessageCreateOrConnectWithoutUserInput | CoachingMessageCreateOrConnectWithoutUserInput[]
+    upsert?: CoachingMessageUpsertWithWhereUniqueWithoutUserInput | CoachingMessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CoachingMessageCreateManyUserInputEnvelope
+    set?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    disconnect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    delete?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    connect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    update?: CoachingMessageUpdateWithWhereUniqueWithoutUserInput | CoachingMessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CoachingMessageUpdateManyWithWhereWithoutUserInput | CoachingMessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CoachingMessageScalarWhereInput | CoachingMessageScalarWhereInput[]
+  }
+
+  export type PendingCoachingUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PendingCoachingCreateOrConnectWithoutUserInput
+    upsert?: PendingCoachingUpsertWithoutUserInput
+    disconnect?: PendingCoachingWhereInput | boolean
+    delete?: PendingCoachingWhereInput | boolean
+    connect?: PendingCoachingWhereUniqueInput
+    update?: XOR<XOR<PendingCoachingUpdateToOneWithWhereWithoutUserInput, PendingCoachingUpdateWithoutUserInput>, PendingCoachingUncheckedUpdateWithoutUserInput>
+  }
+
   export type LiftUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<LiftCreateWithoutUserInput, LiftUncheckedCreateWithoutUserInput> | LiftCreateWithoutUserInput[] | LiftUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LiftCreateOrConnectWithoutUserInput | LiftCreateOrConnectWithoutUserInput[]
@@ -11139,6 +14879,40 @@ export namespace Prisma {
     update?: PendingNotificationUpdateWithWhereUniqueWithoutActorInput | PendingNotificationUpdateWithWhereUniqueWithoutActorInput[]
     updateMany?: PendingNotificationUpdateManyWithWhereWithoutActorInput | PendingNotificationUpdateManyWithWhereWithoutActorInput[]
     deleteMany?: PendingNotificationScalarWhereInput | PendingNotificationScalarWhereInput[]
+  }
+
+  export type UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserCoachSettingsCreateOrConnectWithoutUserInput
+    upsert?: UserCoachSettingsUpsertWithoutUserInput
+    disconnect?: UserCoachSettingsWhereInput | boolean
+    delete?: UserCoachSettingsWhereInput | boolean
+    connect?: UserCoachSettingsWhereUniqueInput
+    update?: XOR<XOR<UserCoachSettingsUpdateToOneWithWhereWithoutUserInput, UserCoachSettingsUpdateWithoutUserInput>, UserCoachSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CoachingMessageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput> | CoachingMessageCreateWithoutUserInput[] | CoachingMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CoachingMessageCreateOrConnectWithoutUserInput | CoachingMessageCreateOrConnectWithoutUserInput[]
+    upsert?: CoachingMessageUpsertWithWhereUniqueWithoutUserInput | CoachingMessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CoachingMessageCreateManyUserInputEnvelope
+    set?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    disconnect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    delete?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    connect?: CoachingMessageWhereUniqueInput | CoachingMessageWhereUniqueInput[]
+    update?: CoachingMessageUpdateWithWhereUniqueWithoutUserInput | CoachingMessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CoachingMessageUpdateManyWithWhereWithoutUserInput | CoachingMessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CoachingMessageScalarWhereInput | CoachingMessageScalarWhereInput[]
+  }
+
+  export type PendingCoachingUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PendingCoachingCreateOrConnectWithoutUserInput
+    upsert?: PendingCoachingUpsertWithoutUserInput
+    disconnect?: PendingCoachingWhereInput | boolean
+    delete?: PendingCoachingWhereInput | boolean
+    connect?: PendingCoachingWhereUniqueInput
+    update?: XOR<XOR<PendingCoachingUpdateToOneWithWhereWithoutUserInput, PendingCoachingUpdateWithoutUserInput>, PendingCoachingUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutLiftsInput = {
@@ -11373,6 +15147,48 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPushSubscriptionsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPushSubscriptionsInput, UserUpdateWithoutPushSubscriptionsInput>, UserUncheckedUpdateWithoutPushSubscriptionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutCoachSettingsInput = {
+    create?: XOR<UserCreateWithoutCoachSettingsInput, UserUncheckedCreateWithoutCoachSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoachSettingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCoachSettingsNestedInput = {
+    create?: XOR<UserCreateWithoutCoachSettingsInput, UserUncheckedCreateWithoutCoachSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoachSettingsInput
+    upsert?: UserUpsertWithoutCoachSettingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCoachSettingsInput, UserUpdateWithoutCoachSettingsInput>, UserUncheckedUpdateWithoutCoachSettingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutCoachingMessagesInput = {
+    create?: XOR<UserCreateWithoutCoachingMessagesInput, UserUncheckedCreateWithoutCoachingMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoachingMessagesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCoachingMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutCoachingMessagesInput, UserUncheckedCreateWithoutCoachingMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCoachingMessagesInput
+    upsert?: UserUpsertWithoutCoachingMessagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCoachingMessagesInput, UserUpdateWithoutCoachingMessagesInput>, UserUncheckedUpdateWithoutCoachingMessagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutPendingCoachingInput = {
+    create?: XOR<UserCreateWithoutPendingCoachingInput, UserUncheckedCreateWithoutPendingCoachingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPendingCoachingInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPendingCoachingNestedInput = {
+    create?: XOR<UserCreateWithoutPendingCoachingInput, UserUncheckedCreateWithoutPendingCoachingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPendingCoachingInput
+    upsert?: UserUpsertWithoutPendingCoachingInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPendingCoachingInput, UserUpdateWithoutPendingCoachingInput>, UserUncheckedUpdateWithoutPendingCoachingInput>
   }
 
   export type PendingNotificationCreatecommentsInput = {
@@ -11615,6 +15431,28 @@ export namespace Prisma {
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
@@ -11801,6 +15639,68 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserCoachSettingsCreateWithoutUserInput = {
+    id?: string
+    goalsText?: string
+    coachingStyle?: string
+    updatedAt?: Date | string
+  }
+
+  export type UserCoachSettingsUncheckedCreateWithoutUserInput = {
+    id?: string
+    goalsText?: string
+    coachingStyle?: string
+    updatedAt?: Date | string
+  }
+
+  export type UserCoachSettingsCreateOrConnectWithoutUserInput = {
+    where: UserCoachSettingsWhereUniqueInput
+    create: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CoachingMessageCreateWithoutUserInput = {
+    id?: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type CoachingMessageUncheckedCreateWithoutUserInput = {
+    id?: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type CoachingMessageCreateOrConnectWithoutUserInput = {
+    where: CoachingMessageWhereUniqueInput
+    create: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput>
+  }
+
+  export type CoachingMessageCreateManyUserInputEnvelope = {
+    data: CoachingMessageCreateManyUserInput | CoachingMessageCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PendingCoachingCreateWithoutUserInput = {
+    id?: string
+    scheduledAt: Date | string
+    sessionStart: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PendingCoachingUncheckedCreateWithoutUserInput = {
+    id?: string
+    scheduledAt: Date | string
+    sessionStart: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PendingCoachingCreateOrConnectWithoutUserInput = {
+    where: PendingCoachingWhereUniqueInput
+    create: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+  }
+
   export type LiftUpsertWithWhereUniqueWithoutUserInput = {
     where: LiftWhereUniqueInput
     update: XOR<LiftUpdateWithoutUserInput, LiftUncheckedUpdateWithoutUserInput>
@@ -11959,6 +15859,83 @@ export namespace Prisma {
     data: XOR<PendingNotificationUpdateManyMutationInput, PendingNotificationUncheckedUpdateManyWithoutActorInput>
   }
 
+  export type UserCoachSettingsUpsertWithoutUserInput = {
+    update: XOR<UserCoachSettingsUpdateWithoutUserInput, UserCoachSettingsUncheckedUpdateWithoutUserInput>
+    create: XOR<UserCoachSettingsCreateWithoutUserInput, UserCoachSettingsUncheckedCreateWithoutUserInput>
+    where?: UserCoachSettingsWhereInput
+  }
+
+  export type UserCoachSettingsUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserCoachSettingsWhereInput
+    data: XOR<UserCoachSettingsUpdateWithoutUserInput, UserCoachSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserCoachSettingsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCoachSettingsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    goalsText?: StringFieldUpdateOperationsInput | string
+    coachingStyle?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageUpsertWithWhereUniqueWithoutUserInput = {
+    where: CoachingMessageWhereUniqueInput
+    update: XOR<CoachingMessageUpdateWithoutUserInput, CoachingMessageUncheckedUpdateWithoutUserInput>
+    create: XOR<CoachingMessageCreateWithoutUserInput, CoachingMessageUncheckedCreateWithoutUserInput>
+  }
+
+  export type CoachingMessageUpdateWithWhereUniqueWithoutUserInput = {
+    where: CoachingMessageWhereUniqueInput
+    data: XOR<CoachingMessageUpdateWithoutUserInput, CoachingMessageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CoachingMessageUpdateManyWithWhereWithoutUserInput = {
+    where: CoachingMessageScalarWhereInput
+    data: XOR<CoachingMessageUpdateManyMutationInput, CoachingMessageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CoachingMessageScalarWhereInput = {
+    AND?: CoachingMessageScalarWhereInput | CoachingMessageScalarWhereInput[]
+    OR?: CoachingMessageScalarWhereInput[]
+    NOT?: CoachingMessageScalarWhereInput | CoachingMessageScalarWhereInput[]
+    id?: StringFilter<"CoachingMessage"> | string
+    userId?: StringFilter<"CoachingMessage"> | string
+    content?: StringFilter<"CoachingMessage"> | string
+    sessionLifts?: JsonFilter<"CoachingMessage">
+    createdAt?: DateTimeFilter<"CoachingMessage"> | Date | string
+  }
+
+  export type PendingCoachingUpsertWithoutUserInput = {
+    update: XOR<PendingCoachingUpdateWithoutUserInput, PendingCoachingUncheckedUpdateWithoutUserInput>
+    create: XOR<PendingCoachingCreateWithoutUserInput, PendingCoachingUncheckedCreateWithoutUserInput>
+    where?: PendingCoachingWhereInput
+  }
+
+  export type PendingCoachingUpdateToOneWithWhereWithoutUserInput = {
+    where?: PendingCoachingWhereInput
+    data: XOR<PendingCoachingUpdateWithoutUserInput, PendingCoachingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PendingCoachingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PendingCoachingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutLiftsInput = {
     id?: string
     username: string
@@ -11969,6 +15946,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLiftsInput = {
@@ -11981,6 +15961,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLiftsInput = {
@@ -12089,6 +16072,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLiftsInput = {
@@ -12101,6 +16087,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type CommentUpsertWithWhereUniqueWithoutLiftInput = {
@@ -12190,6 +16179,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -12202,6 +16194,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -12265,6 +16260,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -12277,6 +16275,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type LiftCreateWithoutReactionsInput = {
@@ -12318,6 +16319,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReactionsInput = {
@@ -12330,6 +16334,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReactionsInput = {
@@ -12393,6 +16400,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReactionsInput = {
@@ -12405,6 +16415,9 @@ export namespace Prisma {
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPushSubscriptionsInput = {
@@ -12417,6 +16430,9 @@ export namespace Prisma {
     reactions?: ReactionCreateNestedManyWithoutAuthorInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPushSubscriptionsInput = {
@@ -12429,6 +16445,9 @@ export namespace Prisma {
     reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPushSubscriptionsInput = {
@@ -12457,6 +16476,9 @@ export namespace Prisma {
     reactions?: ReactionUpdateManyWithoutAuthorNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPushSubscriptionsInput = {
@@ -12469,6 +16491,237 @@ export namespace Prisma {
     reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCoachSettingsInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCoachSettingsInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCoachSettingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCoachSettingsInput, UserUncheckedCreateWithoutCoachSettingsInput>
+  }
+
+  export type UserUpsertWithoutCoachSettingsInput = {
+    update: XOR<UserUpdateWithoutCoachSettingsInput, UserUncheckedUpdateWithoutCoachSettingsInput>
+    create: XOR<UserCreateWithoutCoachSettingsInput, UserUncheckedCreateWithoutCoachSettingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCoachSettingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCoachSettingsInput, UserUncheckedUpdateWithoutCoachSettingsInput>
+  }
+
+  export type UserUpdateWithoutCoachSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCoachSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCoachingMessagesInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCoachingMessagesInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCoachingMessagesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCoachingMessagesInput, UserUncheckedCreateWithoutCoachingMessagesInput>
+  }
+
+  export type UserUpsertWithoutCoachingMessagesInput = {
+    update: XOR<UserUpdateWithoutCoachingMessagesInput, UserUncheckedUpdateWithoutCoachingMessagesInput>
+    create: XOR<UserCreateWithoutCoachingMessagesInput, UserUncheckedCreateWithoutCoachingMessagesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCoachingMessagesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCoachingMessagesInput, UserUncheckedUpdateWithoutCoachingMessagesInput>
+  }
+
+  export type UserUpdateWithoutCoachingMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCoachingMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutPendingCoachingInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPendingCoachingInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    lifts?: LiftUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
+    actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPendingCoachingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPendingCoachingInput, UserUncheckedCreateWithoutPendingCoachingInput>
+  }
+
+  export type UserUpsertWithoutPendingCoachingInput = {
+    update: XOR<UserUpdateWithoutPendingCoachingInput, UserUncheckedUpdateWithoutPendingCoachingInput>
+    create: XOR<UserCreateWithoutPendingCoachingInput, UserUncheckedCreateWithoutPendingCoachingInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPendingCoachingInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPendingCoachingInput, UserUncheckedUpdateWithoutPendingCoachingInput>
+  }
+
+  export type UserUpdateWithoutPendingCoachingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPendingCoachingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lifts?: LiftUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
+    actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOwnedPendingNotificationsInput = {
@@ -12481,6 +16734,9 @@ export namespace Prisma {
     reactions?: ReactionCreateNestedManyWithoutAuthorInput
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     actorPendingNotifications?: PendingNotificationCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOwnedPendingNotificationsInput = {
@@ -12493,6 +16749,9 @@ export namespace Prisma {
     reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     actorPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutActorInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOwnedPendingNotificationsInput = {
@@ -12539,6 +16798,9 @@ export namespace Prisma {
     reactions?: ReactionCreateNestedManyWithoutAuthorInput
     pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationCreateNestedManyWithoutLiftOwnerInput
+    coachSettings?: UserCoachSettingsCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActorPendingNotificationsInput = {
@@ -12551,6 +16813,9 @@ export namespace Prisma {
     reactions?: ReactionUncheckedCreateNestedManyWithoutAuthorInput
     pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
     ownedPendingNotifications?: PendingNotificationUncheckedCreateNestedManyWithoutLiftOwnerInput
+    coachSettings?: UserCoachSettingsUncheckedCreateNestedOneWithoutUserInput
+    coachingMessages?: CoachingMessageUncheckedCreateNestedManyWithoutUserInput
+    pendingCoaching?: PendingCoachingUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActorPendingNotificationsInput = {
@@ -12579,6 +16844,9 @@ export namespace Prisma {
     reactions?: ReactionUpdateManyWithoutAuthorNestedInput
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     actorPendingNotifications?: PendingNotificationUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOwnedPendingNotificationsInput = {
@@ -12591,6 +16859,9 @@ export namespace Prisma {
     reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     actorPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutActorNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type LiftUpsertWithoutPendingNotificationsInput = {
@@ -12649,6 +16920,9 @@ export namespace Prisma {
     reactions?: ReactionUpdateManyWithoutAuthorNestedInput
     pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUpdateManyWithoutLiftOwnerNestedInput
+    coachSettings?: UserCoachSettingsUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActorPendingNotificationsInput = {
@@ -12661,6 +16935,9 @@ export namespace Prisma {
     reactions?: ReactionUncheckedUpdateManyWithoutAuthorNestedInput
     pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
     ownedPendingNotifications?: PendingNotificationUncheckedUpdateManyWithoutLiftOwnerNestedInput
+    coachSettings?: UserCoachSettingsUncheckedUpdateOneWithoutUserNestedInput
+    coachingMessages?: CoachingMessageUncheckedUpdateManyWithoutUserNestedInput
+    pendingCoaching?: PendingCoachingUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type LiftCreateManyUserInput = {
@@ -12713,6 +16990,13 @@ export namespace Prisma {
     reactions?: PendingNotificationCreatereactionsInput | string[]
     sendAfter: Date | string
     sent?: boolean
+    createdAt?: Date | string
+  }
+
+  export type CoachingMessageCreateManyUserInput = {
+    id?: string
+    content: string
+    sessionLifts: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -12881,6 +17165,27 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CoachingMessageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoachingMessageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sessionLifts?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CommentCreateManyLiftInput = {
     id?: string
     authorId: string
@@ -13022,6 +17327,18 @@ export namespace Prisma {
      * @deprecated Use PushSubscriptionDefaultArgs instead
      */
     export type PushSubscriptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PushSubscriptionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserCoachSettingsDefaultArgs instead
+     */
+    export type UserCoachSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCoachSettingsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CoachingMessageDefaultArgs instead
+     */
+    export type CoachingMessageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CoachingMessageDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PendingCoachingDefaultArgs instead
+     */
+    export type PendingCoachingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingCoachingDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PendingNotificationDefaultArgs instead
      */

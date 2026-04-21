@@ -177,6 +177,30 @@ exports.Prisma.PushSubscriptionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.UserCoachSettingsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  goalsText: 'goalsText',
+  coachingStyle: 'coachingStyle',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CoachingMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  sessionLifts: 'sessionLifts',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PendingCoachingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  scheduledAt: 'scheduledAt',
+  sessionStart: 'sessionStart',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PendingNotificationScalarFieldEnum = {
   id: 'id',
   liftOwnerId: 'liftOwnerId',
@@ -194,6 +218,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -202,6 +230,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -213,6 +247,9 @@ exports.Prisma.ModelName = {
   InviteCode: 'InviteCode',
   DailyUpdate: 'DailyUpdate',
   PushSubscription: 'PushSubscription',
+  UserCoachSettings: 'UserCoachSettings',
+  CoachingMessage: 'CoachingMessage',
+  PendingCoaching: 'PendingCoaching',
   PendingNotification: 'PendingNotification'
 };
 

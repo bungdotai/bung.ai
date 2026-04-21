@@ -19,6 +19,9 @@ model User {
   pushSubscriptions         PushSubscription[]
   ownedPendingNotifications PendingNotification[] @relation("PendingNotifOwner")
   actorPendingNotifications PendingNotification[] @relation("PendingNotifActor")
+  coachSettings    UserCoachSettings?
+  coachingMessages CoachingMessage[]
+  pendingCoaching  PendingCoaching?
 }
 
 model Lift {
@@ -78,6 +81,35 @@ model PushSubscription {
   p256dh    String
   auth      String
   createdAt DateTime @default(now())
+}
+
+model UserCoachSettings {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id])
+  goalsText     String   @default("")
+  coachingStyle String   @default("hype_bro")
+  updatedAt     DateTime @updatedAt
+}
+
+model CoachingMessage {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  content      String
+  sessionLifts Json
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model PendingCoaching {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id])
+  scheduledAt  DateTime
+  sessionStart DateTime
+  updatedAt    DateTime @updatedAt
 }
 
 model PendingNotification {

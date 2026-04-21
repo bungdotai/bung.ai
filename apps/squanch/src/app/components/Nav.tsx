@@ -44,6 +44,9 @@ export default function Nav() {
                 <a href="/log" onClick={close} className="flex items-center gap-2 py-3 px-6 text-neutral-300 hover:text-white transition">
                   📋 Log Lift
                 </a>
+                <a href="/settings" onClick={close} className="flex items-center gap-2 py-3 px-6 text-neutral-300 hover:text-white transition">
+                  ⚙️ Settings
+                </a>
                 <a href={`/boys/${session.user?.name}`} onClick={close} className="flex items-center gap-2 py-3 px-6 transition font-medium" style={{ color: getUserColor(session.user?.name ?? "") }}>
                   {session.user?.name}
                 </a>
@@ -72,6 +75,7 @@ export default function Nav() {
             <a href={`/boys/${session.user?.name}`} className="transition font-medium" style={{ color: getUserColor(session.user?.name ?? "") }}>{session.user?.name}</a>
             <NotificationToggle />
             <a href="/log" className="text-neutral-300 hover:text-white transition">Log</a>
+            <a href="/settings" className="text-neutral-300 hover:text-white transition">Settings ⚙️</a>
             <button
               onClick={() => signOut()}
               className="text-neutral-300 hover:text-white transition"
