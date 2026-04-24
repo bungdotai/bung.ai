@@ -20,8 +20,8 @@ export async function POST(req: Request) {
   }
 
   const { type, weight, reps, notifyOthers } = await req.json();
-  if (!type || weight == null || !reps) {
-    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+  if (!type || weight == null || weight < 0 || !reps || reps < 1) {
+    return NextResponse.json({ error: "Invalid fields" }, { status: 400 });
   }
 
   const oneRM = weight * (1 + reps / 30);

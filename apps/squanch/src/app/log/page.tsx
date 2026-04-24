@@ -67,7 +67,8 @@ export default function LogPage() {
       setReps("");
       fetchLifts();
     } else {
-      setMessage("Failed to log lift");
+      const err = await res.json().catch(() => ({}));
+      setMessage(err.error || "Failed to log lift");
     }
     setLoading(false);
   };
@@ -83,7 +84,11 @@ export default function LogPage() {
       <div className="bg-neutral-900 rounded-xl p-8 border border-neutral-800 max-w-lg mx-auto">
         <h1 className="text-2xl font-bold text-white mb-6">Log a Lift</h1>
         {message && (
-          <div className="bg-green-900/50 border border-green-700 rounded-lg p-3 mb-4 text-green-300 text-sm">
+          <div className={`rounded-lg p-3 mb-4 text-sm border ${
+            message.startsWith("Logged")
+              ? "bg-green-900/50 border-green-700 text-green-300"
+              : "bg-red-900/50 border-red-700 text-red-300"
+          }`}>
             {message}
           </div>
         )}
@@ -132,7 +137,7 @@ export default function LogPage() {
                 className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500"
                 required
                 min="1"
-                max="30"
+                max="100"
               />
             </div>
           </div>
