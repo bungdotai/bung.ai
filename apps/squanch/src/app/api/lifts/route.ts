@@ -38,7 +38,9 @@ export async function POST(req: Request) {
     where: { userId },
     create: { userId, scheduledAt, sessionStart: lift.loggedAt },
     update: { scheduledAt },
-  }).catch(() => {});
+  }).catch((err) => {
+    console.error('Coach Bung: failed to upsert pending coaching', err);
+  });
 
   if (notifyOthers) {
     const liftLabels: Record<string, string> = {
