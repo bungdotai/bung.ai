@@ -50,6 +50,13 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
 
+  // Change password state
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pwSaving, setPwSaving] = useState(false);
+  const [pwToast, setPwToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.replace("/login");
@@ -174,6 +181,87 @@ export default function SettingsPage() {
       >
         {saving ? "Saving..." : "Save Settings"}
       </button>
+
+      {/* Divider */}
+      <div className="border-t border-neutral-800 pt-6">
+        <h2 className="text-lg font-semibold text-white mb-1">Change Password</h2>
+        <p className="text-neutral-500 text-sm mb-4">Leave blank if you don&apos;t want to change it.</p>
+
+        {pwToast && (
+          <div
+            className={`rounded-lg px-4 py-3 text-sm font-medium border mb-4 ${
+              pwToast.type === "success"
+                ? "bg-green-900/50 border-green-700 text-green-300"
+                : "bg-red-900/50 border-red-700 text-red-300"
+            }`}
+          >
+            {pwToast.msg}
+          </div>
+        )}
+
+        <div className="space-y-3">
+          <input
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            placeholder="Current password"
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition"
+          />
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="New password (min 6 characters)"
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition"
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm new password"
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500 transition"
+          />
+          <button
+            onClick={async () => {
+              if (!currentPassword || !newPassword || !confirmPassword) {
+                setPwToast({ type: "error", msg: "Please fill in all fields." });
+                setTimeout(() => setPwToast(null), 3000);
+                return;
+              }
+              if (newPassword !== confirmPassword) {
+                setPwToast({ type: "error", msg: "New passwords don't match." });
+                setTimeout(() => setPwToast(null), 3000);
+                return;
+              }
+              setPwSaving(true);
+              setPwToast(null);
+              try {
+                const res = await fetch("/api/change-password", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ currentPassword, newPassword }),
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Failed");
+                setPwToast({ type: "success", msg: "Password changed!" });
+                setCurrentPassword("");
+                setNewPassword("");
+                setConfirmPassword("");
+              } catch (err: unknown) {
+                const msg = err instanceof Error ? err.message : "Failed to change password.";
+                setPwToast({ type: "error", msg });
+              } finally {
+                setPwSaving(false);
+                setTimeout(() => setPwToast(null), 4000);
+              }
+            }}
+            disabled={pwSaving}
+            className="w-full bg-neutral-700 hover:bg-neutral-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-3 transition"
+          >
+            {pwSaving ? "Changing..." : "Change Password"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

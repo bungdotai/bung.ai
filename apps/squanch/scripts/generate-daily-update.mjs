@@ -18,7 +18,36 @@ try {
 const prisma = new PrismaClient();
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Helper: wake Neon endpoint if needed
+async function ensureDbAwake() {
+  const NEON_TOKEN = process.env.NEON_TOKEN || readFileSync('/data/.openclaw/workspace/.neon-token', 'utf8').trim();
+  const ENDPOINT_ID = 'ep-flat-brook-any0la8o';
+  const PROJECT_ID = 'billowing-sun-57683760';
+  
+  try {
+    const res = await fetch(`https://console.neon.tech/api/v2/projects/${PROJECT_ID}/endpoints/${ENDPOINT_ID}`, {
+      headers: { 'Authorization': `Bearer ${NEON_TOKEN}` }
+    });
+    const data = await res.json();
+    const state = data.endpoint?.current_state;
+    
+    if (state === 'idle') {
+      console.log('DB endpoint is idle, restarting...');
+      await fetch(`https://console.neon.tech/api/v2/projects/${PROJECT_ID}/endpoints/${ENDPOINT_ID}/restart`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${NEON_TOKEN}`, 'Content-Type': 'application/json' }
+      });
+      // Wait for restart
+      await new Promise(r => setTimeout(r, 8000));
+    }
+  } catch (err) {
+    console.warn('Failed to check/restart DB:', err.message);
+  }
+}
+
 async function main() {
+  // Ensure DB is awake before querying
+  await ensureDbAwake();
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
   const twoWeeksAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
 
