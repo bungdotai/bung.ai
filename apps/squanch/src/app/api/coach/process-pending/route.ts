@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
 import { prisma } from "@/lib/prisma";
 import { sendPushToUser } from "@/lib/push";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const openrouterKey = process.env.OPENROUTER_API_KEY;
 
 const STYLE_PROMPTS: Record<string, string> = {
   drill_sergeant:
@@ -128,13 +127,29 @@ ${communityText}
 
 Write a coaching message for ${username}. Be specific — mention actual weights. 3-5 sentences max. No emojis in the message itself.`;
 
-      const response = await anthropic.messages.create({
-        model: "claude-haiku-4-5",
-        max_tokens: 300,
-        messages: [{ role: "user", content: prompt }],
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${openrouterKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "z-ai/glm-5.2",
+          max_tokens: 4096,
+          messages: [{ role: "user", content: prompt }],
+        }),
       });
 
-      const content = (response.content[0] as any).text as string;
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`OpenRouter API error ${response.status}: ${errText}`);
+      }
+
+      const data = await response.json();
+      const content = data.choices[0]?.message?.content as string;
+      if (!content) {
+        throw new Error("GLM 5.2 returned null content");
+      }
 
       // Save to DB
       await prisma.coachingMessage.create({

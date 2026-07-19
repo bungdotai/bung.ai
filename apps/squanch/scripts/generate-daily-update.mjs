@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import Anthropic from '@anthropic-ai/sdk';
 import { readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -16,7 +15,7 @@ try {
 
 
 const prisma = new PrismaClient();
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const openrouterKey = process.env.OPENROUTER_API_KEY || readFileSync('/data/.openclaw/workspace/.openrouter-token', 'utf8').trim();
 
 // Helper: wake Neon endpoint if needed
 async function ensureDbAwake() {
@@ -120,7 +119,7 @@ async function main() {
       `Current lift data (last 30 days):\n\n${liftText}`,
     ].filter(Boolean).join('\n\n---\n\n');
 
-    console.log('Sending to Claude...\n');
+    console.log('Sending to GLM 5.2 via OpenRouter...\n');
     console.log(`Previous updates included: ${previousUpdates.length}`);
     console.log(`Comments included: ${recentComments.length}`);
     console.log(`Lifts included: ${lifts.length}\n`);
@@ -130,20 +129,40 @@ async function main() {
       weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
     });
 
-    const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5',
-      max_tokens: 300,
-      system: `You are writing the daily update for a group chat of bros tracking their powerlifting numbers (squat=squanch, deadlift=dunch, bench=bunch). Today is ${today}.
+    const systemPrompt = `You are writing the daily update for a group chat of bros tracking their powerlifting numbers (squat=squanch, deadlift=dunch, bench=bunch). Today is ${today}.
 
 Tone: dry, understated, like a group chat message not an ESPN segment. No caps lock, no excessive exclamation marks. Call out good lifts matter-of-factly. Rib people for weak numbers or not showing up. Reference specific usernames and exact 1RM numbers. Use the actual dates from the lift data — do not guess or infer when things happened.
 
 Use previous updates for continuity — reference what's changed, rivalries, people called out before who still haven't shown up. Keep it brief.
 
-Format: 2 short paragraphs max, no headers, no markdown. Plain text only.`,
-      messages: [{ role: 'user', content: userMessage }],
+Format: 2 short paragraphs max, no headers, no markdown. Plain text only.`;
+
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openrouterKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'z-ai/glm-5.2',
+        max_tokens: 4096,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userMessage },
+        ],
+      }),
     });
 
-    content = response.content[0].text;
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(`OpenRouter API error ${response.status}: ${errText}`);
+    }
+
+    const data = await response.json();
+    content = data.choices[0].message.content;
+    if (!content) {
+      throw new Error('GLM 5.2 returned null content (possibly ran out of tokens during reasoning). Full response: ' + JSON.stringify(data.choices[0]));
+    }
   }
 
   console.log('\n=== Generated Daily Update ===\n');
